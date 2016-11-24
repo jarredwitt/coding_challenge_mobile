@@ -24,7 +24,7 @@
     }
   },
   "rules": {
-    "import/no-unresolved": [2, { "ignore": ["^[~]"] }],
+    "import/no-unresolved": [2, { "ignore": ["^[app, components]"] }],
     "comma-dangle": [
       2,
       "always-multiline"

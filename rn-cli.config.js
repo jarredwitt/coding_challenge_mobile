@@ -10,12 +10,13 @@ var config = {
   getAssetRoots() {
     return getRoots();
   },
+
 };
 
 function getRoots() {
   return [
     __dirname,
-    path.resolve(__dirname, 'app')
+    path.resolve(__dirname, './app'),
   ];
 }
 
