@@ -4,6 +4,7 @@ import {
   View,
 } from 'react-native';
 
+import colors from 'constants/colors';
 import StyledText from 'components/StyledText';
 
 class App extends Component {
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.blue,
   },
 });
 
