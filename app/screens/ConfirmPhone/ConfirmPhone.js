@@ -8,14 +8,14 @@ import Button from 'components/Button';
 import FormInput from 'components/FormInput';
 import StyledText from 'components/StyledText';
 
-const PhoneEntry = props => (
+const ConfirmPhone = props => (
   <View style={styles.container}>
-    <StyledText style={[styles.titleBase, styles.title]}>Let's confirm your phone number.</StyledText>
-    <StyledText style={[styles.titleBase, styles.subtitle]}>We use this to identify your application.</StyledText>
+    <StyledText style={[styles.titleBase, styles.title]}>We sent you a text!</StyledText>
+    <StyledText style={[styles.titleBase, styles.subtitle]}>The text contained a confirmation code.</StyledText>
     <View style={styles.form}>
-      <FormInput labelHidden placeholder="Enter your phone number here..." />
+      <FormInput labelHidden placeholder="Enter the confirmation code here..." />
     </View>
-    <Button label="Send confirmation" />
+    <Button label="Confirm phone" />
   </View>
 );
 
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PhoneEntry;
+export default ConfirmPhone;

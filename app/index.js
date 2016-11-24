@@ -6,13 +6,14 @@ import {
 
 import colors from 'constants/colors';
 
+import ConfirmPhoneScreen from 'screens/ConfirmPhone';
 import PhoneEntryScreen from 'screens/PhoneEntry';
 
 class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <PhoneEntryScreen />
+        <ConfirmPhoneScreen />
       </View>
     );
   }
