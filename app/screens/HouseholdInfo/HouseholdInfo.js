@@ -8,14 +8,19 @@ import Button from 'components/Button';
 import FormInput from 'components/FormInput';
 import StyledText from 'components/StyledText';
 
-const ConfirmPhone = props => (
+const HouseholdInfo = props => (
   <View style={styles.container}>
-    <StyledText style={[styles.titleBase, styles.title]}>We sent you a text!</StyledText>
-    <StyledText style={[styles.titleBase, styles.subtitle]}>The text contained a confirmation code.</StyledText>
+    <StyledText style={[styles.titleBase, styles.title]}>Household Info.</StyledText>
+    <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about your home.</StyledText>
     <View style={styles.form}>
-      <FormInput labelHidden placeholder="Enter the confirmation code here..." />
+      <FormInput label="Address" />
+      <FormInput label="Address 2" />
+      <FormInput label="City" />
+      <FormInput label="State" />
+      <FormInput label="Zip" />
+      <FormInput label="Number of bedrooms" />
     </View>
-    <Button label="Confirm phone" />
+    <Button label="Next" />
   </View>
 );
 
@@ -40,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConfirmPhone;
+export default HouseholdInfo;

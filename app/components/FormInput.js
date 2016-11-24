@@ -33,21 +33,21 @@ class FormInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: 5,
   },
   input: {
     flex: 1,
-    paddingLeft: 5,
+    paddingLeft: 3,
     color: colors.white,
   },
   label: {
-    fontSize: 18,
-    marginBottom: 3,
-    marginLeft: 5,
+    fontSize: 14,
+    marginBottom: 1,
+    marginLeft: 1,
     fontWeight: '500',
   },
   wrapper: {
-    height: 35,
+    height: 30,
     borderBottomWidth: 1,
     borderBottomColor: colors.white,
   },
