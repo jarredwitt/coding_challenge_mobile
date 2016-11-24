@@ -11,7 +11,7 @@ const StyledText = props => (
 
 const styles = StyleSheet.create({
   base: {
-    color: colors.black,
+    color: colors.white,
     fontSize: 14,
     fontFamily: 'Avenir Next',
   },

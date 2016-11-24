@@ -5,13 +5,14 @@ import {
 } from 'react-native';
 
 import colors from 'constants/colors';
-import StyledText from 'components/StyledText';
+
+import PhoneEntryScreen from 'screens/PhoneEntry';
 
 class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StyledText>This is my app.</StyledText>
+        <PhoneEntryScreen />
       </View>
     );
   }
@@ -20,8 +21,6 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: colors.blue,
   },
 });
