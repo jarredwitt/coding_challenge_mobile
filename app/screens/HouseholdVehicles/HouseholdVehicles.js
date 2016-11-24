@@ -9,8 +9,8 @@ import StyledText from 'components/StyledText';
 
 const HouseholdInfo = props => (
   <View style={styles.container}>
-    <StyledText style={[styles.titleBase, styles.title]}>Household Members.</StyledText>
-    <StyledText style={[styles.titleBase, styles.subtitle]}>These are the people you live with.</StyledText>
+    <StyledText style={[styles.titleBase, styles.title]}>Household Vehicles.</StyledText>
+    <StyledText style={[styles.titleBase, styles.subtitle]}>These are the vehicles you own.</StyledText>
     <Button label="Next" />
   </View>
 );
