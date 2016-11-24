@@ -5,8 +5,11 @@ import {
 } from 'react-native';
 
 import Button from 'components/Button';
+import colors from 'constants/colors';
 import FormInput from 'components/FormInput';
 import StyledText from 'components/StyledText';
+
+import Router from 'Router';
 
 const PhoneEntry = props => (
   <View style={styles.container}>
@@ -15,7 +18,7 @@ const PhoneEntry = props => (
     <View style={styles.form}>
       <FormInput labelHidden placeholder="Enter your phone number here..." />
     </View>
-    <Button label="Send confirmation" />
+    <Button label="Send confirmation" onPress={() => props.navigator.push(Router.getRoute('confirmPhoneScreen'))} />
   </View>
 );
 
@@ -23,20 +26,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 20,
+    paddingHorizontal: 20,
+    backgroundColor: colors.blue,
   },
   form: {
     marginBottom: 20,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: '500',
   },
   title: {
     fontSize: 28,
+    fontWeight: '700',
   },
   titleBase: {
     marginBottom: 10,
-    fontWeight: '700',
   },
 });
 

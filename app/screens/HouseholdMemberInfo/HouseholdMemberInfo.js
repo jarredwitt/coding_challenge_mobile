@@ -33,14 +33,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: '500',
   },
   title: {
     fontSize: 28,
+    fontWeight: '700',
   },
   titleBase: {
     marginBottom: 10,
-    fontWeight: '700',
   },
 });
 

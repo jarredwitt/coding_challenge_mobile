@@ -1,34 +1,19 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  View,
-} from 'react-native';
+  NavigationProvider,
+  StackNavigation,
+} from '@exponent/ex-navigation';
 
-import colors from 'constants/colors';
-
-import ConfirmPhoneScreen from 'screens/ConfirmPhone';
-import HouseholdInfoScreen from 'screens/HouseholdInfo';
-import HouseholdMemberInfoScreen from 'screens/HouseholdMemberInfo';
-import HouseholdMembersScreen from 'screens/HouseholdMembers';
-import HouseholdVehicleInfoScreen from 'screens/HouseholdVehicleInfo';
-import HouseholdVehiclesScreen from 'screens/HouseholdVehicles';
-import PhoneEntryScreen from 'screens/PhoneEntry';
+import Router from './Router';
 
 class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <HouseholdVehicleInfoScreen />
-      </View>
+      <NavigationProvider router={Router}>
+        <StackNavigation id="root" navigationUID="root" initialRoute={Router.getRoute('phoneEntryScreen')} />
+      </NavigationProvider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.blue,
-  },
-});
 
 export default App;
