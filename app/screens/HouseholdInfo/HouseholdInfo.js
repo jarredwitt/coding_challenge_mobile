@@ -5,14 +5,14 @@ import {
 } from 'react-native';
 
 import Button from 'components/Button';
-import colors from 'constants/colors';
+import Container from 'components/Container';
 import FormInput from 'components/FormInput';
 import StyledText from 'components/StyledText';
 
 import Router from 'Router';
 
 const HouseholdInfo = props => (
-  <View style={styles.container}>
+  <Container style={styles.container}>
     <StyledText style={[styles.titleBase, styles.title]}>Household Info.</StyledText>
     <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about your home.</StyledText>
     <View style={styles.form}>
@@ -24,15 +24,13 @@ const HouseholdInfo = props => (
       <FormInput label="Number of bedrooms" />
     </View>
     <Button label="Next" onPress={() => props.navigator.push(Router.getRoute('householdMembersScreen'))} />
-  </View>
+  </Container>
 );
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
-    backgroundColor: colors.blue,
   },
   form: {
     marginBottom: 20,

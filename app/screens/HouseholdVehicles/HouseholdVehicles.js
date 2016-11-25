@@ -5,23 +5,21 @@ import {
 } from 'react-native';
 
 import Button from 'components/Button';
-import colors from 'constants/colors';
+import Container from 'components/Container';
 import StyledText from 'components/StyledText';
 
 const HouseholdInfo = props => (
-  <View style={styles.container}>
+  <Container style={styles.container}>
     <StyledText style={[styles.titleBase, styles.title]}>Household Vehicles.</StyledText>
     <StyledText style={[styles.titleBase, styles.subtitle]}>These are the vehicles you own.</StyledText>
     <Button label="Next" />
-  </View>
+  </Container>
 );
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
-    backgroundColor: colors.blue,
   },
   subtitle: {
     fontSize: 20,
