@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import colors from 'constants/colors';
 
-const IconButton = (props) => {
+const CircleButton = (props) => {
   const { containerStyle, icon, onPress, size } = props;
   const containerSize = size * 2;
 
@@ -21,14 +21,14 @@ const IconButton = (props) => {
   );
 };
 
-IconButton.propTypes = {
+CircleButton.propTypes = {
   icon: PropTypes.string,
   onPress: PropTypes.func,
   size: PropTypes.number,
   containerStyle: View.propTypes.style,
 };
 
-IconButton.defaultProps = {
+CircleButton.defaultProps = {
   icon: 'arrow-left',
   onPress: () => true,
   size: 20,
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IconButton;
+export default CircleButton;

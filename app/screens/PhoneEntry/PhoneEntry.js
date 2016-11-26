@@ -28,8 +28,8 @@ PhoneEntry.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     paddingHorizontal: 20,
+    paddingTop: 64,
   },
   form: {
     marginBottom: 20,
