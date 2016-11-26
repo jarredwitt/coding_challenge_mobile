@@ -15,7 +15,7 @@ const HouseholdInfo = props => (
   <Container style={styles.container}>
     <View style={styles.topButtonContainer}>
       <CircleButton size={20} onPress={() => props.navigator.pop()} />
-      <CircleButton size={20} icon="plus" />
+      <CircleButton size={20} icon="plus" onPress={() => props.navigator.push(Router.getRoute('householdMemberInfoScreen'))} />
     </View>
     <StyledText style={[styles.titleBase, styles.title]}>Household Members.</StyledText>
     <StyledText style={[styles.titleBase, styles.subtitle]}>These are the people you live with.</StyledText>

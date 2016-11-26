@@ -11,7 +11,9 @@ import PhoneEntryScreen from 'screens/PhoneEntry';
 export default createRouter(() => ({
   confirmPhoneScreen: () => ConfirmPhoneScreen,
   householdInfoScreen: () => HouseholdInfoScreen,
+  householdMemberInfoScreen: () => HouseholdMemberInfoScreen,
   householdMembersScreen: () => HouseholdMembersScreen,
+  householdVehicleInfoScreen: () => HouseholdVehicleInfoScreen,
   householdVehiclesScreen: () => HouseholdVehiclesScreen,
   phoneEntryScreen: () => PhoneEntryScreen,
 }));

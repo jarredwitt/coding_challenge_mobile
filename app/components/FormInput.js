@@ -10,11 +10,17 @@ import StyledText from 'components/StyledText';
 
 class FormInput extends Component {
   static propTypes = {
-
+    inputStyle: TextInput.propTypes.style,
+    label: PropTypes.string,
+    labelHidden: PropTypes.bool,
+    labelStyle: StyledText.propTypes.style,
+    name: PropTypes.string,
+    onChangeText: PropTypes.func,
   }
 
+  _onChangeText = text => this.props.onChangeText(this.props.name, text);
   render() {
-    const { inputStyle, label, labelHidden, labelStyle, onChangeText, ...inputProps } = this.props;
+    const { inputStyle, label, labelHidden, labelStyle, onChangeText, ...inputProps } = this.props; // eslint-disable-line
 
     return (
       <View style={styles.container}>

@@ -13,18 +13,20 @@ const Button = props => (
   <TouchableHighlight style={styles.container} onPress={props.onPress} underlayColor={colors.yellow_300}>
     <View style={styles.wrapper}>
       <StyledText style={styles.text}>{props.label}</StyledText>
-      <Icon name={props.icon} size={20} color={colors.white} />
+      {!props.hideIcon && <Icon name={props.icon} size={20} color={colors.white} />}
     </View>
   </TouchableHighlight>
 );
 
 Button.propTypes = {
+  hideIcon: PropTypes.bool,
   icon: PropTypes.string,
   label: PropTypes.string,
   onPress: PropTypes.func,
 };
 
 Button.defaultProps = {
+  hideIcon: false,
   icon: 'arrow-right',
   onPress: () => true,
 };
