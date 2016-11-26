@@ -22,6 +22,10 @@ const PhoneEntry = props => (
   </Container>
 );
 
+PhoneEntry.propTypes = {
+  navigator: PropTypes.object,
+};
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
