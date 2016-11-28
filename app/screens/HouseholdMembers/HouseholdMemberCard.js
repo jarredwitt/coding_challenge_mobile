@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,30 +8,36 @@ import CircleButton from 'components/CircleButton';
 import colors from 'constants/colors';
 import StyledText from 'components/StyledText';
 
-const HouseholdMemberCard = (props) => {
-  const { id, first, last, gender, age, email } = props;
+class HouseholdMemberCard extends Component {
+  static propTypes = {
+    age: PropTypes.string,
+    editPress: PropTypes.func,
+    email: PropTypes.string,
+    first: PropTypes.string,
+    gender: PropTypes.string,
+    id: PropTypes.number,
+    last: PropTypes.string,
+    removePress: PropTypes.func,
+  }
 
-  return (
-    <View key={id} style={styles.member}>
-      <StyledText style={styles.name}>{`${first} ${last}`}</StyledText>
-      <StyledText>{`${age} - ${gender}`}</StyledText>
-      <StyledText>{email}</StyledText>
-      <View style={styles.bottomButtons}>
-        <CircleButton icon="pencil" containerStyle={styles.icon} />
-        <CircleButton icon="remove" containerStyle={styles.icon} />
+  _onEditPress = () => this.props.editPress(this.props.id);
+  _onRemovePress = () => this.props.removePress(this.props.id);
+  render() {
+    const { first, last, gender, age, email } = this.props;
+
+    return (
+      <View style={styles.member}>
+        <StyledText style={styles.name}>{`${first} ${last}`}</StyledText>
+        <StyledText>{`${age} - ${gender}`}</StyledText>
+        <StyledText>{email}</StyledText>
+        <View style={styles.bottomButtons}>
+          <CircleButton icon="pencil" containerStyle={styles.icon} onPress={this._onEditPress} />
+          <CircleButton icon="remove" containerStyle={styles.icon} onPress={this._onRemovePress} />
+        </View>
       </View>
-    </View>
-  );
-};
-
-HouseholdMemberCard.propTypes = {
-  age: PropTypes.string,
-  email: PropTypes.string,
-  first: PropTypes.string,
-  gender: PropTypes.string,
-  id: PropTypes.number,
-  last: PropTypes.string,
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   bottomButtons: {

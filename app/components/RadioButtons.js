@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
-  TouchableOpacity,
+  TouchableHighlight,
   View,
 } from 'react-native';
 
@@ -29,10 +29,12 @@ class RadioButtons extends Component {
     const onPress = () => this.props.onPress(option);
 
     return (
-      <TouchableOpacity key={index} onPress={onPress} style={styles.optionContainer}>
-        <View style={[circleStyles]} />
-        <StyledText style={styles.text}>{option}</StyledText>
-      </TouchableOpacity>
+      <TouchableHighlight key={index} onPress={onPress} underlayColor="#0000">
+        <View style={styles.optionContainer}>
+          <View style={[circleStyles]} />
+          <StyledText style={styles.text}>{option}</StyledText>
+        </View>
+      </TouchableHighlight>
     );
   }
   render() {

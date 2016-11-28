@@ -22,7 +22,7 @@ const HouseholdMemberInfo = (props) => {
         <StyledText style={[styles.titleBase, styles.title]}>Household Member.</StyledText>
         <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about this person.</StyledText>
         <View style={styles.form}>
-          <RadioButtons options={['Male', 'Female']} value={gender} onPress={setGender} />
+          <RadioButtons options={['Female', 'Male', 'Other']} value={gender} onPress={setGender} />
           <FormInput name="first" label="First" value={first} onChangeText={updateProperty} autoCorrect={false} />
           <FormInput name="last" label="Last" value={last} onChangeText={updateProperty} autoCorrect={false} />
           <FormInput name="email" label="Email" value={email} onChangeText={updateProperty} keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />

@@ -20,7 +20,7 @@ const HouseholdInfo = props => (
     <StyledText style={[styles.titleBase, styles.title]}>Household Members.</StyledText>
     <StyledText style={[styles.titleBase, styles.subtitle]}>These are the people you live with.</StyledText>
     <View style={styles.membersContainer}>
-      {props.householdMembers.map(HouseholdMemberCard)}
+      {props.householdMembers.map(member => <HouseholdMemberCard key={member.id} {...member} editPress={props.editMember} removePress={props.removeMember} />)}
     </View>
     <Button label="Next" onPress={props.next} />
   </Container>
@@ -29,8 +29,10 @@ const HouseholdInfo = props => (
 HouseholdInfo.propTypes = {
   addMember: PropTypes.func,
   back: PropTypes.func,
+  editMember: PropTypes.func,
   householdMembers: PropTypes.array,
   next: PropTypes.func,
+  removeMember: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
