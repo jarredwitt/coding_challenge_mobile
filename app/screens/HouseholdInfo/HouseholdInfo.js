@@ -20,7 +20,7 @@ const HouseholdInfo = props => (
       <View style={styles.form}>
         <FormInput name="address" label="Address" value={props.address} onChangeText={props.updateProperty} />
         <FormInput name="city" label="City" value={props.city} onChangeText={props.updateProperty} />
-        <FormInput name="state" label="State" value={props.state} onChangeText={props.updateProperty} />
+        <FormInput name="state" label="State" value={props.state} onChangeText={props.updateProperty} maxLength={2} autoCorrect={false} autoCapitalize="characters" />
         <FormInput name="zip" label="Zip" value={props.zip} onChangeText={props.updateProperty} keyboardType="number-pad" />
         <FormInput name="number_of_bedrooms" label="Number of bedrooms" value={props.number_of_bedrooms} onChangeText={props.updateProperty} keyboardType="number-pad" />
       </View>

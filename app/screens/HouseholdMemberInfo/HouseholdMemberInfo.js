@@ -9,25 +9,30 @@ import Button from 'components/Button';
 import Container from 'components/Container';
 import CircleButton from 'components/CircleButton';
 import FormInput from 'components/FormInput';
+import RadioButtons from 'components/RadioButtons';
 import StyledText from 'components/StyledText';
 
-const HouseholdMemberInfo = props => (
-  <Container>
-    <KeyboardAwareScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps keyboardDismissMode="on-drag">
-      <CircleButton size={20} icon="close" containerStyle={styles.backButton} onPress={props.back} />
-      <StyledText style={[styles.titleBase, styles.title]}>Household Member.</StyledText>
-      <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about this person.</StyledText>
-      <View style={styles.form}>
-        <FormInput name="first" label="First" value={props.first} onChangeText={props.updateProperty} />
-        <FormInput name="last" label="Last" value={props.last} onChangeText={props.updateProperty} />
-        <FormInput name="email" label="Email" value={props.email} onChangeText={props.updateProperty} />
-        <FormInput name="age" label="Age" value={props.age} onChangeText={props.updateProperty} />
-        <FormInput name="gender" label="Gender" value={props.gender} onChangeText={props.updateProperty} />
-      </View>
-      <Button label="Save" onPress={props.submit} hideIcon />
-    </KeyboardAwareScrollView>
-  </Container>
-);
+const HouseholdMemberInfo = (props) => {
+  const { age, email, first, gender, last, setGender, submit, updateProperty } = props;
+
+  return (
+    <Container>
+      <KeyboardAwareScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps keyboardDismissMode="on-drag">
+        <CircleButton size={20} icon="close" containerStyle={styles.backButton} onPress={props.back} />
+        <StyledText style={[styles.titleBase, styles.title]}>Household Member.</StyledText>
+        <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about this person.</StyledText>
+        <View style={styles.form}>
+          <RadioButtons options={['Male', 'Female']} value={gender} onPress={setGender} />
+          <FormInput name="first" label="First" value={first} onChangeText={updateProperty} autoCorrect={false} />
+          <FormInput name="last" label="Last" value={last} onChangeText={updateProperty} autoCorrect={false} />
+          <FormInput name="email" label="Email" value={email} onChangeText={updateProperty} keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />
+          <FormInput name="age" label="Age" value={age} onChangeText={updateProperty} keyboardType="number-pad" />
+        </View>
+        <Button label="Save" onPress={submit} hideIcon />
+      </KeyboardAwareScrollView>
+    </Container>
+  );
+};
 
 HouseholdMemberInfo.propTypes = {
   age: PropTypes.string,
@@ -36,6 +41,7 @@ HouseholdMemberInfo.propTypes = {
   first: PropTypes.string,
   gender: PropTypes.string,
   last: PropTypes.string,
+  setGender: PropTypes.func,
   submit: PropTypes.func,
   updateProperty: PropTypes.func,
 };

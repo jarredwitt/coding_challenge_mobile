@@ -29,6 +29,7 @@ class HouseholdMemberInfoContainer extends Component {
     this.props.resetMember();
   }
   _back = () => this.props.navigator.pop();
+  _setGender = gender => this.props.updateMemberProperty('gender', gender);
   _submit = () => this.props.saveMember();
   render() {
     const { memberInfo, updateMemberProperty: updateProperty } = this.props;
@@ -42,6 +43,7 @@ class HouseholdMemberInfoContainer extends Component {
         first={first}
         gender={gender}
         last={last}
+        setGender={this._setGender}
         submit={this._submit}
         updateProperty={updateProperty}
       />
