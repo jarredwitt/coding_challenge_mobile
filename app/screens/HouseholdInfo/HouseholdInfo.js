@@ -11,29 +11,33 @@ import FormInput from 'components/FormInput';
 import CircleButton from 'components/CircleButton';
 import StyledText from 'components/StyledText';
 
-import Router from 'Router';
-
 const HouseholdInfo = props => (
   <Container>
     <KeyboardAwareScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps keyboardDismissMode="on-drag">
-      <CircleButton size={20} containerStyle={styles.backButton} onPress={() => props.navigator.pop()} />
+      <CircleButton size={20} containerStyle={styles.backButton} onPress={props.back} />
       <StyledText style={[styles.titleBase, styles.title]}>Household Info.</StyledText>
       <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about your home.</StyledText>
       <View style={styles.form}>
-        <FormInput label="Address" />
-        <FormInput label="Address 2" />
-        <FormInput label="City" />
-        <FormInput label="State" />
-        <FormInput label="Zip" />
-        <FormInput label="Number of bedrooms" />
+        <FormInput name="address" label="Address" value={props.address} onChangeText={props.updateProperty} />
+        <FormInput name="city" label="City" value={props.city} onChangeText={props.updateProperty} />
+        <FormInput name="state" label="State" value={props.state} onChangeText={props.updateProperty} />
+        <FormInput name="zip" label="Zip" value={props.zip} onChangeText={props.updateProperty} keyboardType="number-pad" />
+        <FormInput name="number_of_bedrooms" label="Number of bedrooms" value={props.number_of_bedrooms} onChangeText={props.updateProperty} keyboardType="number-pad" />
       </View>
-      <Button label="Next" onPress={() => props.navigator.push(Router.getRoute('householdMembersScreen'))} />
+      <Button label="Next" onPress={props.submit} />
     </KeyboardAwareScrollView>
   </Container>
 );
 
 HouseholdInfo.propTypes = {
-  navigator: PropTypes.object,
+  address: PropTypes.string,
+  back: PropTypes.func,
+  city: PropTypes.string,
+  number_of_bedrooms: PropTypes.number,
+  state: PropTypes.string,
+  submit: PropTypes.func,
+  updateProperty: PropTypes.func,
+  zip: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

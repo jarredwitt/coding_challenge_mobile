@@ -9,21 +9,28 @@ import Container from 'components/Container';
 import FormInput from 'components/FormInput';
 import StyledText from 'components/StyledText';
 
-import Router from 'Router';
-
 const PhoneEntry = props => (
   <Container style={styles.container}>
     <StyledText style={[styles.titleBase, styles.title]}>Let's confirm your phone number.</StyledText>
     <StyledText style={[styles.titleBase, styles.subtitle]}>We use this to identify your application.</StyledText>
     <View style={styles.form}>
-      <FormInput labelHidden placeholder="Enter your phone number here..." />
+      <FormInput
+        name="phoneNumber"
+        value={props.phoneNumber}
+        onChangeText={props.updatePhoneNumber}
+        labelHidden
+        placeholder="Enter your phone number here..."
+        keyboardType="number-pad"
+      />
     </View>
-    <Button label="Send confirmation" onPress={() => props.navigator.push(Router.getRoute('confirmPhoneScreen'))} />
+    <Button label="Send confirmation" onPress={props.submit} />
   </Container>
 );
 
 PhoneEntry.propTypes = {
-  navigator: PropTypes.object,
+  phoneNumber: PropTypes.string,
+  submit: PropTypes.func,
+  updatePhoneNumber: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

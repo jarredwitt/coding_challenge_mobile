@@ -10,22 +10,29 @@ import FormInput from 'components/FormInput';
 import CircleButton from 'components/CircleButton';
 import StyledText from 'components/StyledText';
 
-import Router from 'Router';
-
 const ConfirmPhone = props => (
   <Container style={styles.container}>
-    <CircleButton size={20} containerStyle={styles.backButton} onPress={() => props.navigator.pop()} />
+    <CircleButton size={20} containerStyle={styles.backButton} onPress={props.back} />
     <StyledText style={[styles.titleBase, styles.title]}>We sent you a text!</StyledText>
     <StyledText style={[styles.titleBase, styles.subtitle]}>The text contains a confirmation code.</StyledText>
     <View style={styles.form}>
-      <FormInput labelHidden placeholder="Enter the confirmation code here..." />
+      <FormInput
+        name="confirmationCode"
+        value={props.confirmationCode}
+        labelHidden placeholder="Enter the confirmation code here..."
+        onChangeText={props.updateConfirmationCode}
+        keyboardType="number-pad"
+      />
     </View>
-    <Button label="Confirm phone" onPress={() => props.navigator.push(Router.getRoute('householdInfoScreen'))} />
+    <Button label="Confirm phone" onPress={props.submit} />
   </Container>
 );
 
 ConfirmPhone.propTypes = {
-  navigator: PropTypes.object,
+  back: PropTypes.func,
+  confirmationCode: PropTypes.string,
+  submit: PropTypes.func,
+  updateConfirmationCode: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

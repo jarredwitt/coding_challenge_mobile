@@ -16,8 +16,16 @@ class FormInput extends Component {
     labelStyle: StyledText.propTypes.style,
     name: PropTypes.string,
     onChangeText: PropTypes.func,
+    value: PropTypes.string,
   }
 
+  static defaultProps = {
+    onChangeText: () => true,
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.value !== this.props.value;
+  }
   _onChangeText = text => this.props.onChangeText(this.props.name, text);
   render() {
     const { inputStyle, label, labelHidden, labelStyle, onChangeText, ...inputProps } = this.props; // eslint-disable-line
