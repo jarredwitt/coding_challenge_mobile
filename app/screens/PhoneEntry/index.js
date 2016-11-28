@@ -1,29 +1,38 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
+import { updateApplicationProperty } from 'actions/application';
 import Router from 'Router';
 
 import PhoneEntry from './PhoneEntry';
 
-class Container extends Component {
+class PhoneEntryContainer extends Component {
   static propTypes = {
     navigator: PropTypes.object,
+    phoneNumber: PropTypes.string,
+    updateApplicationProperty: PropTypes.func,
   };
 
-  state = {}
-
-  _updateProperty = (name, value) => this.setState({ [name]: value });
+  shouldComponentUpdate(nextProps) {
+    return nextProps.phoneNumber !== this.props.phoneNumber;
+  }
   _submit = () => {
     this.props.navigator.push(Router.getRoute('confirmPhoneScreen'));
   }
   render() {
+    const { phoneNumber, updateApplicationProperty: updateProperty } = this.props;
     return (
       <PhoneEntry
-        phoneNumber={this.state.phoneNumber}
-        updatePhoneNumber={this._updateProperty}
+        phoneNumber={phoneNumber}
+        updatePhoneNumber={updateProperty}
         submit={this._submit}
       />
     );
   }
 }
 
-export default Container;
+const mapStateToProps = state => ({
+  phoneNumber: state.application.get('data').get('phoneNumber'),
+});
+
+export default connect(mapStateToProps, { updateApplicationProperty })(PhoneEntryContainer);

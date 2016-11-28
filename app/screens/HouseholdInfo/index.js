@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { createSelector } from 'reselect';
 
 import { updateApplicationProperty } from 'actions/application';
 import Router from 'Router';
@@ -15,15 +17,16 @@ class HouseholdInfoContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.applicationInfo.get('data') !== this.props.applicationInfo.get('data');
+    return nextProps.applicationInfo !== this.props.applicationInfo;
   }
   _back = () => this.props.navigator.pop();
   _submit = () => {
+    Keyboard.dismiss();
     this.props.navigator.push(Router.getRoute('householdMembersScreen'));
   }
   render() {
-    const { applicationInfo, updateApplicationProperty } = this.props;
-    const { address, city, state, zip, number_of_bedrooms } = applicationInfo.get('data').toJS();
+    const { applicationInfo, updateApplicationProperty: updateProperty } = this.props;
+    const { address, city, state, zip, number_of_bedrooms } = applicationInfo.toJS();
 
     return (
       <HouseholdInfo
@@ -33,15 +36,20 @@ class HouseholdInfoContainer extends Component {
         numberOfBedRooms={number_of_bedrooms}
         state={state}
         submit={this._submit}
-        updateProperty={updateApplicationProperty}
+        updateProperty={updateProperty}
         zip={zip}
       />
     );
   }
 }
 
+const applicationInfoSelector = createSelector(state => state.application.get('data'), (applicationData) => {
+  const keys = ['address', 'city', 'number_of_bedrooms', 'state', 'zip'];
+  return applicationData.filter((v, k) => keys.includes(k));
+});
+
 const mapStateToProps = state => ({
-  applicationInfo: state.application,
+  applicationInfo: applicationInfoSelector(state),
 });
 
 export default connect(mapStateToProps, { updateApplicationProperty })(HouseholdInfoContainer);

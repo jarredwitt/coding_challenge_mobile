@@ -1,31 +1,41 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
+import { updateApplicationProperty } from 'actions/application';
 import Router from 'Router';
 
 import ConfirmPhone from './ConfirmPhone';
 
-class Container extends Component {
+class ConfirmPhoneContainer extends Component {
   static propTypes = {
+    confirmationCode: PropTypes.string,
     navigator: PropTypes.object,
+    updateApplicationProperty: PropTypes.func,
   }
 
-  state = {}
-
+  shouldComponentUpdate(nextProps) {
+    return nextProps.confirmationCode !== this.props.confirmationCode;
+  }
   _back = () => this.props.navigator.pop();
   _submit = () => {
     this.props.navigator.push(Router.getRoute('householdInfoScreen'));
   }
-  _updateProperty = (name, value) => this.setState({ [name]: value });
   render() {
+    const { confirmationCode, updateApplicationProperty: updateProperty } = this.props;
+
     return (
       <ConfirmPhone
         back={this._back}
-        conformationCode={this.state.confirmationCode}
-        updateConfirmationCode={this._updateProperty}
+        conformationCode={confirmationCode}
+        updateConfirmationCode={updateProperty}
         submit={this._submit}
       />
     );
   }
 }
 
-export default Container;
+const mapStateToProps = state => ({
+  confirmationCode: state.application.get('data').get('confirmationCode'),
+});
+
+export default connect(mapStateToProps, { updateApplicationProperty })(ConfirmPhoneContainer);
