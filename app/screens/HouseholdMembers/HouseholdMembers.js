@@ -44,7 +44,7 @@ HouseholdInfo.propTypes = {
 const styles = StyleSheet.create({
   scrollViewContent: {
     paddingHorizontal: 20,
-    paddingTop: 32,
+    paddingVertical: 32,
   },
   subtitle: {
     fontSize: 20,

@@ -18,7 +18,7 @@ const HouseholdInfo = (props) => {
 
   return (
     <Container>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <CircleButton size={20} containerStyle={styles.backButton} onPress={back} />
         <StyledText style={[styles.titleBase, styles.title]}>Household Summary.</StyledText>
         <StyledText style={[styles.titleBase, styles.subtitle]}>Household Info.</StyledText>
@@ -47,14 +47,12 @@ const styles = StyleSheet.create({
   backButton: {
     marginBottom: 20,
   },
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 32,
-    paddingBottom: 30,
-  },
   form: {
     marginBottom: 20,
+  },
+  scrollViewContent: {
+    paddingHorizontal: 20,
+    paddingVertical: 32,
   },
   subtitle: {
     fontSize: 20,
