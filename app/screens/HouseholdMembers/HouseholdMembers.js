@@ -8,9 +8,8 @@ import {
 import Button from 'components/Button';
 import Container from 'components/Container';
 import CircleButton from 'components/CircleButton';
+import HouseholdMemberCard from 'components/HouseholdMemberCard';
 import StyledText from 'components/StyledText';
-
-import HouseholdMemberCard from './HouseholdMemberCard';
 
 const HouseholdInfo = (props) => {
   const { addMember, back, editMember, householdMembers, next, removeMember } = props;

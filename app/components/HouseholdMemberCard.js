@@ -15,6 +15,7 @@ class HouseholdMemberCard extends Component {
     email: PropTypes.string,
     first: PropTypes.string,
     gender: PropTypes.string,
+    hideButtons: PropTypes.bool,
     id: PropTypes.number,
     last: PropTypes.string,
     removePress: PropTypes.func,
@@ -23,17 +24,21 @@ class HouseholdMemberCard extends Component {
   _onEditPress = () => this.props.editPress(this.props.id);
   _onRemovePress = () => this.props.removePress(this.props.id);
   render() {
-    const { first, last, gender, age, email } = this.props;
+    const { first, last, gender, age, email, hideButtons } = this.props;
 
     return (
       <View style={styles.member}>
-        <StyledText style={styles.name}>{`${first} ${last}`}</StyledText>
-        <StyledText>{`${age} - ${gender}`}</StyledText>
-        <StyledText>{email}</StyledText>
-        <View style={styles.bottomButtons}>
-          <CircleButton icon="pencil" containerStyle={styles.icon} onPress={this._onEditPress} />
-          <CircleButton icon="remove" containerStyle={styles.icon} onPress={this._onRemovePress} />
+        <View style={styles.textContainer}>
+          <StyledText style={styles.name}>{`${first} ${last}`}</StyledText>
+          <StyledText>{`${age} - ${gender}`}</StyledText>
+          <StyledText>{email}</StyledText>
         </View>
+        {!hideButtons &&
+          <View style={styles.bottomButtons}>
+            <CircleButton icon="pencil" containerStyle={styles.icon} onPress={this._onEditPress} />
+            <CircleButton icon="remove" containerStyle={styles.icon} onPress={this._onRemovePress} />
+          </View>
+        }
       </View>
     );
   }
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 20,
-    marginVertical: 10,
+    marginBottom: 10,
   },
   member: {
     marginBottom: 10,
@@ -55,6 +60,9 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  textContainer: {
+    marginBottom: 10,
   },
 });
 

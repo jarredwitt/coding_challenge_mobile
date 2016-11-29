@@ -8,18 +8,25 @@ import {
 import Button from 'components/Button';
 import Container from 'components/Container';
 import CircleButton from 'components/CircleButton';
+import HouseholdInfoCard from 'components/HouseholdInfoCard';
+import HouseholdMemberCard from 'components/HouseholdMemberCard';
+import HouseholdVehicleCard from 'components/HouseholdVehicleCard';
 import StyledText from 'components/StyledText';
 
 const HouseholdInfo = (props) => {
-  const { back, save, submit } = props;
+  const { back, householdInfo, householdMembers, householdVehicles, save, submit } = props;
 
   return (
     <Container>
       <ScrollView contentContainerStyle={styles.container}>
         <CircleButton size={20} containerStyle={styles.backButton} onPress={back} />
-        <StyledText style={[styles.titleBase, styles.title]}>Household Info.</StyledText>
-        <StyledText style={[styles.titleBase, styles.title]}>Household Members.</StyledText>
-        <StyledText style={[styles.titleBase, styles.title]}>Household Vehicles.</StyledText>
+        <StyledText style={[styles.titleBase, styles.title]}>Household Summary.</StyledText>
+        <StyledText style={[styles.titleBase, styles.subtitle]}>Household Info.</StyledText>
+        <HouseholdInfoCard {...householdInfo} />
+        <StyledText style={[styles.titleBase, styles.subtitle]}>Household Members.</StyledText>
+        {householdMembers.map(member => <HouseholdMemberCard key={member.id} {...member} hideButtons />)}
+        <StyledText style={[styles.titleBase, styles.subtitle]}>Household Vehicles.</StyledText>
+        {householdVehicles.map(vehicle => <HouseholdVehicleCard key={vehicle.id} {...vehicle} hideButtons />)}
         <Button label="Submit" onPress={submit} />
       </ScrollView>
     </Container>
@@ -28,6 +35,9 @@ const HouseholdInfo = (props) => {
 
 HouseholdInfo.propTypes = {
   back: PropTypes.func,
+  householdInfo: PropTypes.object,
+  householdMembers: PropTypes.array,
+  householdVehicles: PropTypes.array,
   save: PropTypes.func,
   submit: PropTypes.func,
 };
@@ -47,11 +57,11 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: '500',
+    fontWeight: '700',
   },
   title: {
     fontSize: 28,
-    fontWeight: '700',
+    fontWeight: '800',
   },
   titleBase: {
     marginBottom: 10,

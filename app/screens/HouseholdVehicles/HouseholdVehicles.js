@@ -8,9 +8,8 @@ import {
 import Button from 'components/Button';
 import CircleButton from 'components/CircleButton';
 import Container from 'components/Container';
+import HouseholdVehicleCard from 'components/HouseholdVehicleCard';
 import StyledText from 'components/StyledText';
-
-import HouseholdVehicleCard from './HouseholdVehicleCard';
 
 const HouseholdVehicles = (props) => {
   const { addVehicle, back, editVehicle, householdVehicles, next, removeVehicle } = props;
