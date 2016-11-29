@@ -12,12 +12,12 @@ import CircleButton from 'components/CircleButton';
 import StyledText from 'components/StyledText';
 
 const HouseholdInfo = (props) => {
-  const { address, back, city, numberOfBedrooms, state, submit, updateProperty, zip } = props;
+  const { address, back, canPop, city, numberOfBedrooms, state, submit, updateProperty, zip } = props;
 
   return (
     <Container>
       <KeyboardAwareScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps keyboardDismissMode="on-drag">
-        <CircleButton size={20} containerStyle={styles.backButton} onPress={back} />
+        {canPop && <CircleButton size={20} containerStyle={styles.backButton} onPress={back} />}
         <StyledText style={[styles.titleBase, styles.title]}>Household Info.</StyledText>
         <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about your home.</StyledText>
         <View style={styles.form}>
@@ -36,6 +36,7 @@ const HouseholdInfo = (props) => {
 HouseholdInfo.propTypes = {
   address: PropTypes.string,
   back: PropTypes.func,
+  canPop: PropTypes.bool,
   city: PropTypes.string,
   numberOfBedrooms: PropTypes.string,
   state: PropTypes.string,

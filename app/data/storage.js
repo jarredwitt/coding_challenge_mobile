@@ -16,7 +16,7 @@ export const saveDraftApplicationData = async data => await AsyncStorage.setItem
 export const getDraftApplicationData = async () => {
   const draftApplicationDataJSON = await AsyncStorage.getItem(STORAGE_KEY);
   if (!draftApplicationDataJSON) {
-    return {};
+    return null;
   }
 
   const draftApplicationData = JSON.parse(draftApplicationDataJSON);

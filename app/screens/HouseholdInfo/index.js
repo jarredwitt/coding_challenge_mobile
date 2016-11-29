@@ -11,6 +11,7 @@ import HouseholdInfo from './HouseholdInfo';
 
 class HouseholdInfoContainer extends Component {
   static propTypes = {
+    canPop: PropTypes.bool,
     householdInfo: ImmutablePropTypes.map,
     navigator: PropTypes.object,
     updateApplicationProperty: PropTypes.func,
@@ -25,13 +26,14 @@ class HouseholdInfoContainer extends Component {
     this.props.navigator.push(Router.getRoute('householdMembersScreen'));
   }
   render() {
-    const { householdInfo, updateApplicationProperty: updateProperty } = this.props;
+    const { canPop, householdInfo, updateApplicationProperty: updateProperty } = this.props;
     const { address, city, state, zip, numberOfBedrooms } = householdInfo.toJS();
 
     return (
       <HouseholdInfo
         address={address}
         back={this._back}
+        canPop={canPop}
         city={city}
         numberOfBedrooms={numberOfBedrooms}
         state={state}

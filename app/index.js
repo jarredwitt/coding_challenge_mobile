@@ -29,8 +29,11 @@ class App extends Component {
       store: this.store,
     });
 
+    const initialScreen = draftApplicationData.application ? 'householdInfoScreen' : 'phoneEntryScreen';
+
     this.setState({
       ready: true,
+      initialScreen,
     });
   }
   render() {
@@ -42,7 +45,7 @@ class App extends Component {
       <Provider store={this.store}>
         <NavigationProvider context={this.navigationContext}>
           <StatusBar barStyle="light-content" />
-          <StackNavigation id="root" navigatorUID="root" initialRoute={Router.getRoute('phoneEntryScreen')} />
+          <StackNavigation id="root" navigatorUID="root" initialRoute={Router.getRoute(this.state.initialScreen)} />
         </NavigationProvider>
       </Provider>
     );

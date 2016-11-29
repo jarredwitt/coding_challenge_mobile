@@ -18,7 +18,7 @@ class ConfirmPhoneContainer extends Component {
   }
   _back = () => this.props.navigator.pop();
   _submit = () => {
-    this.props.navigator.push(Router.getRoute('householdInfoScreen'));
+    this.props.navigator.push(Router.getRoute('householdInfoScreen', { canPop: true }));
   }
   render() {
     const { confirmationCode, updateApplicationProperty: updateProperty } = this.props;
