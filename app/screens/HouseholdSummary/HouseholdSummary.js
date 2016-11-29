@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import {
   ScrollView,
   StyleSheet,
-  View,
 } from 'react-native';
 
 import Button from 'components/Button';
@@ -11,6 +10,7 @@ import CircleButton from 'components/CircleButton';
 import HouseholdInfoCard from 'components/HouseholdInfoCard';
 import HouseholdMemberCard from 'components/HouseholdMemberCard';
 import HouseholdVehicleCard from 'components/HouseholdVehicleCard';
+import LinkButton from 'components/LinkButton';
 import StyledText from 'components/StyledText';
 
 const HouseholdInfo = (props) => {
@@ -28,6 +28,7 @@ const HouseholdInfo = (props) => {
         <StyledText style={[styles.titleBase, styles.subtitle]}>Household Vehicles.</StyledText>
         {householdVehicles.map(vehicle => <HouseholdVehicleCard key={vehicle.id} {...vehicle} hideButtons />)}
         <Button label="Submit" onPress={submit} />
+        <LinkButton label="Save as draft" onPress={save} />
       </ScrollView>
     </Container>
   );
