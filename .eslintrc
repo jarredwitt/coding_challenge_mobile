@@ -24,7 +24,7 @@
     }
   },
   "rules": {
-    "import/no-unresolved": [2, { "ignore": ["^[app, components, Router]"] }],
+    "import/no-unresolved": [2, { "ignore": ["^[actions, app, components, constants, data, reducers, Router, screens, store]"] }],
     "comma-dangle": [
       2,
       "always-multiline"

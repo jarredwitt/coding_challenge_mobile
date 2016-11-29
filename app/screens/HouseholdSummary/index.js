@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { saveApplicationAsDraft } from 'actions/application';
+
 import householdInfoSelector from 'selectors/householdInfo';
 import householdMembersSelector from 'selectors/householdMembers';
 import householdVehiclesSelector from 'selectors/householdVehicles';
@@ -14,10 +16,11 @@ class HouseholdSummaryContainer extends Component {
     householdMembers: ImmutablePropTypes.map,
     householdVehicles: ImmutablePropTypes.map,
     navigator: PropTypes.object,
+    saveApplicationAsDraft: PropTypes.func,
   }
 
   _back = () => this.props.navigator.pop();
-  _save = () => console.log('save');
+  _save = () => this.props.saveApplicationAsDraft();
   _submit = () => console.log('submit');
   render() {
     const { householdInfo, householdMembers, householdVehicles } = this.props;
@@ -43,4 +46,4 @@ const mapStateToProps = state => ({
   householdVehicles: householdVehiclesSelector(state),
 });
 
-export default connect(mapStateToProps)(HouseholdSummaryContainer);
+export default connect(mapStateToProps, { saveApplicationAsDraft })(HouseholdSummaryContainer);

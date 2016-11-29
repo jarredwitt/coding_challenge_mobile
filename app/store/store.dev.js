@@ -11,8 +11,8 @@ const createStoreWithNavigation = createNavigationEnabledStore({
   navigationStateKey: 'navigation',
 });
 
-export default () => {
-  const store = createStoreWithNavigation(enableBatching(rootReducer), {}, compose(applyMiddleware(reduxThunk), devTools({
+export default (initialState) => {
+  const store = createStoreWithNavigation(enableBatching(rootReducer), initialState, compose(applyMiddleware(reduxThunk), devTools({
     name: 'Coding Challenge App',
     realtime: true,
     hostname: 'localhost',
