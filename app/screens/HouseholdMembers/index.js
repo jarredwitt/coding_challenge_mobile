@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { setMember } from 'actions/member';
 import { removeMember } from 'actions/members';
 import Router from 'Router';
+import householdMembersSelector from 'selectors/householdMembers';
 
 import HouseholdMembers from './HouseholdMembers';
 
@@ -44,11 +44,6 @@ class HouseholdMembersContainer extends Component {
     );
   }
 }
-
-const householdMembersSelector = createSelector(
-  state => state.members,
-  members => members.filter(member => !member.get('removed'))
-);
 
 const mapStateToProps = state => ({
   householdMembers: householdMembersSelector(state),
