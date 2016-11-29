@@ -33,7 +33,7 @@ class HouseholdInfoContainer extends Component {
         address={address}
         back={this._back}
         city={city}
-        numberOfBedRooms={number_of_bedrooms}
+        numberOfBedrooms={number_of_bedrooms}
         state={state}
         submit={this._submit}
         updateProperty={updateProperty}

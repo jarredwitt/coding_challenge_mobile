@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {
+  ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
@@ -12,20 +13,22 @@ import StyledText from 'components/StyledText';
 import HouseholdVehicleCard from './HouseholdVehicleCard';
 
 const HouseholdVehicles = (props) => {
-  const { addVehicle, back, householdVehicles, next } = props;
+  const { addVehicle, back, editVehicle, householdVehicles, next, removeVehicle } = props;
 
   return (
-    <Container style={styles.container}>
-      <View style={styles.topButtonContainer}>
-        <CircleButton size={20} onPress={back} />
-        <CircleButton size={20} icon="plus" onPress={addVehicle} />
-      </View>
-      <StyledText style={[styles.titleBase, styles.title]}>Household Vehicles.</StyledText>
-      <StyledText style={[styles.titleBase, styles.subtitle]}>These are the vehicles you own.</StyledText>
-      <View>
-        {householdVehicles.map(member => <HouseholdVehicleCard key={member.id} {...member} editPress={props.editVehicle} removePress={props.removeVehicle} />)}
-      </View>
-      <Button label="Next" onPress={next} />
+    <Container>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.topButtonContainer}>
+          <CircleButton size={20} onPress={back} />
+          <CircleButton size={20} icon="plus" onPress={addVehicle} />
+        </View>
+        <StyledText style={[styles.titleBase, styles.title]}>Household Vehicles.</StyledText>
+        <StyledText style={[styles.titleBase, styles.subtitle]}>These are the vehicles you own.</StyledText>
+        <View>
+          {householdVehicles.map(member => <HouseholdVehicleCard key={member.id} {...member} editPress={editVehicle} removePress={removeVehicle} />)}
+        </View>
+        <Button label="Next" onPress={next} />
+      </ScrollView>
     </Container>
   );
 };
@@ -40,7 +43,7 @@ HouseholdVehicles.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scrollViewContent: {
     paddingHorizontal: 20,
     paddingTop: 32,
   },

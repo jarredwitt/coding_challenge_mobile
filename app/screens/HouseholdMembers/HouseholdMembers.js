@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {
+  ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
@@ -11,20 +12,26 @@ import StyledText from 'components/StyledText';
 
 import HouseholdMemberCard from './HouseholdMemberCard';
 
-const HouseholdInfo = props => (
-  <Container style={styles.container}>
-    <View style={styles.topButtonContainer}>
-      <CircleButton size={20} onPress={props.back} />
-      <CircleButton size={20} icon="plus" onPress={props.addMember} />
-    </View>
-    <StyledText style={[styles.titleBase, styles.title]}>Household Members.</StyledText>
-    <StyledText style={[styles.titleBase, styles.subtitle]}>These are the people you live with.</StyledText>
-    <View style={styles.membersContainer}>
-      {props.householdMembers.map(member => <HouseholdMemberCard key={member.id} {...member} editPress={props.editMember} removePress={props.removeMember} />)}
-    </View>
-    <Button label="Next" onPress={props.next} />
-  </Container>
-);
+const HouseholdInfo = (props) => {
+  const { addMember, back, editMember, householdMembers, next, removeMember } = props;
+
+  return (
+    <Container>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.topButtonContainer}>
+          <CircleButton size={20} onPress={back} />
+          <CircleButton size={20} icon="plus" onPress={addMember} />
+        </View>
+        <StyledText style={[styles.titleBase, styles.title]}>Household Members.</StyledText>
+        <StyledText style={[styles.titleBase, styles.subtitle]}>These are the people you live with.</StyledText>
+        <View style={styles.membersContainer}>
+          {householdMembers.map(member => <HouseholdMemberCard key={member.id} {...member} editPress={editMember} removePress={removeMember} />)}
+        </View>
+        <Button label="Next" onPress={next} />
+      </ScrollView>
+    </Container>
+  );
+};
 
 HouseholdInfo.propTypes = {
   addMember: PropTypes.func,
@@ -36,7 +43,7 @@ HouseholdInfo.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scrollViewContent: {
     paddingHorizontal: 20,
     paddingTop: 32,
   },
