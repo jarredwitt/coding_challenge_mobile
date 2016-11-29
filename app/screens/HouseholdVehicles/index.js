@@ -45,9 +45,24 @@ class HouseholdVehiclesContainer extends Component {
   }
 }
 
+const householdMembersSelector = createSelector(
+  state => state.members,
+  members => members.filter(member => !member.get('removed'))
+);
+
 const householdVehiclesSelector = createSelector(
   state => state.vehicles,
-  vehicles => vehicles.filter(vehicle => !vehicle.get('removed'))
+  householdMembersSelector,
+  (vehicles, householdMembers) => vehicles.filter(vehicle => !vehicle.get('removed')).map((vehicle) => {
+    if (!vehicle.has('ownerId')) {
+      return vehicle;
+    }
+
+    const ownerId = vehicle.get('ownerId');
+    const ownerName = householdMembers.get(ownerId).get('first');
+    console.log(ownerName);
+    return vehicle.set('owner', ownerName);
+  })
 );
 
 const mapStateToProps = state => ({

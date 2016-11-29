@@ -26,14 +26,14 @@ class HouseholdInfoContainer extends Component {
   }
   render() {
     const { applicationInfo, updateApplicationProperty: updateProperty } = this.props;
-    const { address, city, state, zip, number_of_bedrooms } = applicationInfo.toJS();
+    const { address, city, state, zip, numberOfBedrooms } = applicationInfo.toJS();
 
     return (
       <HouseholdInfo
         address={address}
         back={this._back}
         city={city}
-        numberOfBedrooms={number_of_bedrooms}
+        numberOfBedrooms={numberOfBedrooms}
         state={state}
         submit={this._submit}
         updateProperty={updateProperty}

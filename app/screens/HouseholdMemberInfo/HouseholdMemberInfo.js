@@ -12,6 +12,17 @@ import FormInput from 'components/FormInput';
 import RadioButtons from 'components/RadioButtons';
 import StyledText from 'components/StyledText';
 
+const genderOptions = [{
+  display: 'Female',
+  value: 'Female',
+}, {
+  display: 'Male',
+  value: 'Male',
+}, {
+  display: 'Other',
+  value: 'Other',
+}];
+
 const HouseholdMemberInfo = (props) => {
   const { age, email, first, gender, last, setGender, submit, updateProperty } = props;
 
@@ -22,7 +33,7 @@ const HouseholdMemberInfo = (props) => {
         <StyledText style={[styles.titleBase, styles.title]}>Household Member.</StyledText>
         <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about this person.</StyledText>
         <View style={styles.form}>
-          <RadioButtons options={['Female', 'Male', 'Other']} value={gender} onPress={setGender} />
+          <RadioButtons options={genderOptions} value={gender} onPress={setGender} />
           <FormInput name="first" label="First" value={first} onChangeText={updateProperty} autoCorrect={false} />
           <FormInput name="last" label="Last" value={last} onChangeText={updateProperty} autoCorrect={false} />
           <FormInput name="email" label="Email" value={email} onChangeText={updateProperty} keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />

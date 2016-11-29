@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { NavigationStyles } from '@exponent/ex-navigation';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { createSelector } from 'reselect';
 
 import { resetVehicle, saveVehicle, updateVehicleProperty } from 'actions/vehicle';
 
@@ -9,6 +10,7 @@ import HouseholdVehicleInfo from './HouseholdVehicleInfo';
 
 class HouseholdVehicleInfoContainer extends Component {
   static propTypes = {
+    householdMembers: ImmutablePropTypes.map,
     navigator: PropTypes.object,
     resetVehicle: PropTypes.func,
     saveVehicle: PropTypes.func,
@@ -22,24 +24,29 @@ class HouseholdVehicleInfoContainer extends Component {
     },
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     return nextProps.vehicleInfo !== this.props.vehicleInfo;
   }
   componentWillUnmount() {
     this.props.resetVehicle();
   }
   _back = () => this.props.navigator.pop();
+  _setVehicleOwner = id => this.props.updateVehicleProperty('ownerId', id);
   _submit = () => this.props.saveVehicle();
   render() {
-    const { updateVehicleProperty: updateProperty, vehicleInfo } = this.props;
-    const { make, model, year, license_plate } = vehicleInfo.toJS();
+    const { householdMembers, updateVehicleProperty: updateProperty, vehicleInfo } = this.props;
+    const { licensePlate, make, model, ownerId, year } = vehicleInfo.toJS();
+    const householdMembersList = householdMembers.valueSeq().toJS().map(member => ({ display: member.first, value: member.id }));
 
     return (
       <HouseholdVehicleInfo
         back={this._back}
+        householdMembers={householdMembersList}
+        licensePlate={licensePlate}
         make={make}
         model={model}
-        license_plate={license_plate}
+        ownerId={ownerId}
+        setVehicleOwner={this._setVehicleOwner}
         submit={this._submit}
         updateProperty={updateProperty}
         year={year}
@@ -48,7 +55,13 @@ class HouseholdVehicleInfoContainer extends Component {
   }
 }
 
+const householdMembersSelector = createSelector(
+  state => state.members,
+  members => members.filter(member => !member.get('removed'))
+);
+
 const mapStateToProps = state => ({
+  householdMembers: householdMembersSelector(state),
   vehicleInfo: state.vehicle,
 });
 

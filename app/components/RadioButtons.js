@@ -12,7 +12,10 @@ class RadioButtons extends Component {
   static propTypes = {
     onPress: PropTypes.func,
     options: PropTypes.array,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   }
 
   static defaultProps = {
@@ -22,17 +25,17 @@ class RadioButtons extends Component {
 
   _buildOption = (option, index) => {
     const circleStyles = [styles.circle];
-    if (this.props.value === option) {
+    if (this.props.value === option.value) {
       circleStyles.push(styles.circlFilled);
     }
 
-    const onPress = () => this.props.onPress(option);
+    const onPress = () => this.props.onPress(option.value);
 
     return (
       <TouchableHighlight key={index} onPress={onPress} underlayColor="#0000">
         <View style={styles.optionContainer}>
           <View style={[circleStyles]} />
-          <StyledText style={styles.text}>{option}</StyledText>
+          <StyledText style={styles.text}>{option.display}</StyledText>
         </View>
       </TouchableHighlight>
     );

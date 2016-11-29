@@ -12,9 +12,10 @@ class HouseholdVehicleCard extends Component {
   static propTypes = {
     editPress: PropTypes.func,
     id: PropTypes.number,
-    license_plate: PropTypes.string,
+    licensePlate: PropTypes.string,
     make: PropTypes.string,
     model: PropTypes.string,
+    owner: PropTypes.string,
     removePress: PropTypes.func,
     year: PropTypes.string,
   }
@@ -22,12 +23,13 @@ class HouseholdVehicleCard extends Component {
   _onEditPress = () => this.props.editPress(this.props.id);
   _onRemovePress = () => this.props.removePress(this.props.id);
   render() {
-    const { make, model, year, license_plate } = this.props;
+    const { make, model, owner, year, licensePlate } = this.props;
 
     return (
       <View style={styles.vehicle}>
         <StyledText style={styles.name}>{`${make} ${model}`}</StyledText>
-        <StyledText>{`${year} - ${license_plate}`}</StyledText>
+        <StyledText>{`${year} - ${licensePlate}`}</StyledText>
+        <StyledText>{`Owner: ${owner}`}</StyledText>
         <View style={styles.bottomButtons}>
           <CircleButton icon="pencil" containerStyle={styles.icon} onPress={this._onEditPress} />
           <CircleButton icon="remove" containerStyle={styles.icon} onPress={this._onRemovePress} />
