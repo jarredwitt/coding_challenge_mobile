@@ -1,7 +1,12 @@
-import { UPDATE_PROPERTY } from 'constants/application';
+import { batchActions } from 'redux-batched-actions';
+
+import { SET_DATA, SET_LOADING, UPDATE_PROPERTY } from 'constants/application';
 
 import { Application } from 'data/api';
 import { saveDraftApplicationData } from 'data/storage';
+
+import { setMembers } from './members';
+import { setVehicles } from './vehicles';
 
 export const saveApplicationAsDraft = () => async (dispatch, getState) => {
   try {
@@ -21,8 +26,20 @@ export const saveApplicationAsDraft = () => async (dispatch, getState) => {
   }
 };
 
+export const setApplicationData = data => ({
+  type: SET_DATA,
+  data,
+});
+
+export const setApplicationLoading = isLoading => ({
+  type: SET_LOADING,
+  isLoading,
+});
+
 export const submitApplication = () => async (dispatch, getState) => {
   try {
+    dispatch(setApplicationLoading(true));
+
     const state = getState();
 
     const application = state.application.get('data').toJS();
@@ -36,12 +53,15 @@ export const submitApplication = () => async (dispatch, getState) => {
       result = await Application.create(application, members, vehicles);
     }
 
-    // Need to transform the result
-    // make members and vehicles hashes again.
-    // Try to think of a utility function
-    // Think about if hashes are actually needed or arrays would be better...
+    const data = result.data;
 
-    console.log(result);
+    dispatch(batchActions([
+      setApplicationData(data.application),
+      setMembers(data.members),
+      setVehicles(data.vehicles),
+    ]));
+
+    dispatch(setApplicationLoading(false));
   } catch (error) {
     console.log(error);
   }

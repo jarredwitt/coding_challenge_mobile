@@ -16,7 +16,7 @@ export default (initialState = {}) => {
     name: 'Coding Challenge App',
     realtime: true,
     hostname: 'localhost',
-    port: 8000,
+    port: 8001,
   })));
 
   return store;

@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { ADD_MEMBER, REMOVE_MEMBER, UPDATE_MEMBER } from 'constants/members';
+import { ADD_MEMBER, REMOVE_MEMBER, SET_MEMBERS, UPDATE_MEMBER } from 'constants/members';
 
 const initialState = fromJS([]);
 export default (state = initialState, action) => {
@@ -9,6 +9,8 @@ export default (state = initialState, action) => {
       return state.push(action.member);
     case REMOVE_MEMBER:
       return state.update(action.index, member => member.set('removed', true));
+    case SET_MEMBERS:
+      return fromJS(action.members);
     case UPDATE_MEMBER:
       return state.set(action.index, action.member);
     default:
