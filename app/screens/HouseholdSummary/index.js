@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { saveApplicationAsDraft } from 'actions/application';
+import { saveApplicationAsDraft, submitApplication } from 'actions/application';
 
 import householdInfoSelector from 'selectors/householdInfo';
 import householdMembersSelector from 'selectors/householdMembers';
@@ -17,11 +17,12 @@ class HouseholdSummaryContainer extends Component {
     householdVehicles: ImmutablePropTypes.map,
     navigator: PropTypes.object,
     saveApplicationAsDraft: PropTypes.func,
+    submitApplication: PropTypes.func,
   }
 
   _back = () => this.props.navigator.pop();
   _save = () => this.props.saveApplicationAsDraft();
-  _submit = () => console.log('submit');
+  _submit = () => this.props.submitApplication();
   render() {
     const { householdInfo, householdMembers, householdVehicles } = this.props;
     const householdMembersList = householdMembers.valueSeq().toJS();
@@ -46,4 +47,4 @@ const mapStateToProps = state => ({
   householdVehicles: householdVehiclesSelector(state),
 });
 
-export default connect(mapStateToProps, { saveApplicationAsDraft })(HouseholdSummaryContainer);
+export default connect(mapStateToProps, { saveApplicationAsDraft, submitApplication })(HouseholdSummaryContainer);
