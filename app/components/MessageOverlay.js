@@ -5,7 +5,6 @@ import {
   View,
 } from 'react-native';
 
-import colors from 'constants/colors';
 import StyledText from 'components/StyledText';
 
 const { width, height } = Dimensions.get('window');

@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { batchActions } from 'redux-batched-actions';
 
 import { SET_DATA, SET_LOADING, UPDATE_PROPERTY } from 'constants/application';
@@ -7,6 +8,10 @@ import { saveDraftApplicationData } from 'data/storage';
 
 import { setMembers } from './members';
 import { setVehicles } from './vehicles';
+
+function showAlert(title, body) {
+  Alert.alert(title, body);
+}
 
 export const saveApplicationAsDraft = () => async (dispatch, getState) => {
   try {
@@ -21,6 +26,7 @@ export const saveApplicationAsDraft = () => async (dispatch, getState) => {
     const dataJSON = JSON.stringify(data);
 
     await saveDraftApplicationData(dataJSON);
+    showAlert('Draft Saved!', 'Your application has been saved as a draft on your device.');
   } catch (error) {
     console.log(error);
   }
@@ -62,6 +68,7 @@ export const submitApplication = () => async (dispatch, getState) => {
     ]));
 
     dispatch(setApplicationLoading(false));
+    showAlert('Success!', 'Your application has been submitted.');
   } catch (error) {
     console.log(error);
   }
