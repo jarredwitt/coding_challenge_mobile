@@ -11,10 +11,11 @@ import HouseholdInfoCard from 'components/HouseholdInfoCard';
 import HouseholdMemberCard from 'components/HouseholdMemberCard';
 import HouseholdVehicleCard from 'components/HouseholdVehicleCard';
 import LinkButton from 'components/LinkButton';
+import MessageOverlay from 'components/MessageOverlay';
 import StyledText from 'components/StyledText';
 
 const HouseholdInfo = (props) => {
-  const { back, householdInfo, householdMembers, householdVehicles, save, submit } = props;
+  const { back, householdInfo, householdMembers, householdVehicles, isLoading, save, submit } = props;
 
   return (
     <Container>
@@ -30,6 +31,7 @@ const HouseholdInfo = (props) => {
         <Button label="Submit" onPress={submit} />
         <LinkButton label="Save as draft" onPress={save} />
       </ScrollView>
+      {isLoading && <MessageOverlay message="Submitting Application." />}
     </Container>
   );
 };
@@ -39,6 +41,7 @@ HouseholdInfo.propTypes = {
   householdInfo: PropTypes.object,
   householdMembers: PropTypes.array,
   householdVehicles: PropTypes.array,
+  isLoading: PropTypes.bool,
   save: PropTypes.func,
   submit: PropTypes.func,
 };

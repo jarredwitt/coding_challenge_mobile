@@ -15,6 +15,7 @@ class HouseholdSummaryContainer extends Component {
     householdInfo: ImmutablePropTypes.map,
     householdMembers: ImmutablePropTypes.list,
     householdVehicles: ImmutablePropTypes.list,
+    isLoading: PropTypes.bool,
     navigator: PropTypes.object,
     saveApplicationAsDraft: PropTypes.func,
     submitApplication: PropTypes.func,
@@ -24,7 +25,7 @@ class HouseholdSummaryContainer extends Component {
   _save = () => this.props.saveApplicationAsDraft();
   _submit = () => this.props.submitApplication();
   render() {
-    const { householdInfo, householdMembers, householdVehicles } = this.props;
+    const { householdInfo, householdMembers, householdVehicles, isLoading } = this.props;
     const householdMembersList = householdMembers.toJS();
     const householdVehiclesList = householdVehicles.toJS();
 
@@ -34,6 +35,7 @@ class HouseholdSummaryContainer extends Component {
         householdInfo={householdInfo.toJS()}
         householdMembers={householdMembersList}
         householdVehicles={householdVehiclesList}
+        isLoading={isLoading}
         save={this._save}
         submit={this._submit}
       />
@@ -45,6 +47,7 @@ const mapStateToProps = state => ({
   householdInfo: householdInfoSelector(state),
   householdMembers: householdMembersSelector(state),
   householdVehicles: householdVehiclesSelector(state),
+  isLoading: state.application.get('loading'),
 });
 
 export default connect(mapStateToProps, { saveApplicationAsDraft, submitApplication })(HouseholdSummaryContainer);
