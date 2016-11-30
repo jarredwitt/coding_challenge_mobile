@@ -7,6 +7,8 @@ import {
 } from '@exponent/ex-navigation';
 import { Provider } from 'react-redux';
 
+import Container from 'components/Container';
+import StyledText from 'components/StyledText';
 import { getDraftApplicationData } from 'data/storage';
 import initStore from 'store';
 
@@ -38,7 +40,11 @@ class App extends Component {
   }
   render() {
     if (!this.state.ready) {
-      return null;
+      return (
+        <Container>
+          <StyledText>Loading application.</StyledText>
+        </Container>
+      );
     }
 
     return (

@@ -13,22 +13,27 @@ function showAlert(title, body) {
   Alert.alert(title, body);
 }
 
+async function saveApplicationStateToDeviceStorage(state) {
+  const data = {
+    application: state.application.toJS(),
+    members: state.members.toJS(),
+    vehicles: state.vehicles.toJS(),
+  };
+
+  const dataJSON = JSON.stringify(data);
+
+  await saveDraftApplicationData(dataJSON);
+}
+
 export const saveApplicationAsDraft = () => async (dispatch, getState) => {
   try {
     const state = getState();
 
-    const data = {
-      application: state.application.toJS(),
-      members: state.members.toJS(),
-      vehicles: state.vehicles.toJS(),
-    };
+    saveApplicationStateToDeviceStorage(state);
 
-    const dataJSON = JSON.stringify(data);
-
-    await saveDraftApplicationData(dataJSON);
     showAlert('Draft Saved!', 'Your application has been saved as a draft on your device.');
   } catch (error) {
-    console.log(error);
+    showAlert('Error!', error.message);
   }
 };
 
@@ -65,12 +70,17 @@ export const submitApplication = () => async (dispatch, getState) => {
       setApplicationData(data.application),
       setMembers(data.members),
       setVehicles(data.vehicles),
+      setApplicationLoading(false),
     ]));
 
-    dispatch(setApplicationLoading(false));
+    const newState = getState();
+
+    await saveApplicationStateToDeviceStorage(newState);
+
     showAlert('Success!', 'Your application has been submitted.');
   } catch (error) {
-    console.log(error);
+    dispatch(setApplicationLoading(false));
+    showAlert('Error!', error.message);
   }
 };
 

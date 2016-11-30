@@ -1,25 +1,28 @@
 import React, { Component, PropTypes } from 'react';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import { updateApplicationProperty } from 'actions/application';
-import Router from 'Router';
+import { confirmPhoneNumber } from 'actions/phone';
 
 import ConfirmPhone from './ConfirmPhone';
 
 class ConfirmPhoneContainer extends Component {
   static propTypes = {
     confirmationCode: PropTypes.string,
+    confirmPhoneNumber: PropTypes.func,
     navigator: PropTypes.object,
     updateApplicationProperty: PropTypes.func,
   }
 
+  componentWillMount() {
+    Alert.alert('Confirmation Code', 'Normally you would get a text for this, but this is a demo! The confirmation code is 8585');
+  }
   shouldComponentUpdate(nextProps) {
     return nextProps.confirmationCode !== this.props.confirmationCode;
   }
   _back = () => this.props.navigator.pop();
-  _submit = () => {
-    this.props.navigator.push(Router.getRoute('householdInfoScreen', { canPop: true }));
-  }
+  _submit = () => this.props.confirmPhoneNumber();
   render() {
     const { confirmationCode, updateApplicationProperty: updateProperty } = this.props;
 
@@ -38,4 +41,4 @@ const mapStateToProps = state => ({
   confirmationCode: state.application.get('data').get('confirmationCode'),
 });
 
-export default connect(mapStateToProps, { updateApplicationProperty })(ConfirmPhoneContainer);
+export default connect(mapStateToProps, { confirmPhoneNumber, updateApplicationProperty })(ConfirmPhoneContainer);

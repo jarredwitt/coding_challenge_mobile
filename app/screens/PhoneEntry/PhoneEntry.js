@@ -9,23 +9,27 @@ import Container from 'components/Container';
 import FormInput from 'components/FormInput';
 import StyledText from 'components/StyledText';
 
-const PhoneEntry = props => (
-  <Container style={styles.container}>
-    <StyledText style={[styles.titleBase, styles.title]}>Let's confirm your phone number.</StyledText>
-    <StyledText style={[styles.titleBase, styles.subtitle]}>We use this to identify your application.</StyledText>
-    <View style={styles.form}>
-      <FormInput
-        name="phoneNumber"
-        value={props.phoneNumber}
-        onChangeText={props.updatePhoneNumber}
-        labelHidden
-        placeholder="Enter your phone number here..."
-        keyboardType="number-pad"
-      />
-    </View>
-    <Button label="Send confirmation" onPress={props.submit} />
-  </Container>
-);
+const PhoneEntry = (props) => {
+  const { phoneNumber, updatePhoneNumber, submit } = props;
+
+  return (
+    <Container style={styles.container}>
+      <StyledText style={[styles.titleBase, styles.title]}>Let's confirm your phone number.</StyledText>
+      <StyledText style={[styles.titleBase, styles.subtitle]}>We use this to identify your application.</StyledText>
+      <View style={styles.form}>
+        <FormInput
+          name="phoneNumber"
+          value={phoneNumber}
+          onChangeText={updatePhoneNumber}
+          labelHidden
+          placeholder="Enter your phone number here..."
+          keyboardType="number-pad"
+        />
+      </View>
+      <Button label="Send confirmation" onPress={submit} />
+    </Container>
+  );
+};
 
 PhoneEntry.propTypes = {
   phoneNumber: PropTypes.string,

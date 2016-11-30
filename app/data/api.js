@@ -20,10 +20,16 @@ const buildRequest = (url, params, data, method = 'get') => axios({
 });
 
 const Application = {
-  create: (application, members, vehicles) => buildRequest('application/', {}, { application, members, vehicles }, 'post'),
-  update: (id, application, members, vehicles) => buildRequest(`application/${id}`, {}, { application, members, vehicles }, 'post'),
+  create: (application, members, vehicles) => buildRequest('applications', {}, { application, members, vehicles }, 'post'),
+  update: (id, application, members, vehicles) => buildRequest(`applications/${id}`, {}, { application, members, vehicles }, 'post'),
+};
+
+const PhoneNumber = {
+  confirm: (phoneNumber, confirmationCode) => buildRequest('phonenumbers/confirm', {}, { phoneNumber, confirmationCode }, 'post'),
+  validate: phoneNumber => buildRequest('phonenumbers/validate', {}, { phoneNumber }, 'post'),
 };
 
 module.exports = {
   Application,
+  PhoneNumber,
 };

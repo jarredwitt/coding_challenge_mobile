@@ -8,16 +8,14 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Button from 'components/Button';
 import Container from 'components/Container';
 import FormInput from 'components/FormInput';
-import CircleButton from 'components/CircleButton';
 import StyledText from 'components/StyledText';
 
 const HouseholdInfo = (props) => {
-  const { address, back, canPop, city, numberOfBedrooms, state, submit, updateProperty, zip } = props;
+  const { address, city, numberOfBedrooms, state, submit, updateProperty, zip } = props;
 
   return (
     <Container>
       <KeyboardAwareScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps keyboardDismissMode="on-drag">
-        {canPop && <CircleButton size={20} containerStyle={styles.backButton} onPress={back} />}
         <StyledText style={[styles.titleBase, styles.title]}>Household Info.</StyledText>
         <StyledText style={[styles.titleBase, styles.subtitle]}>Tell us about your home.</StyledText>
         <View style={styles.form}>
@@ -35,8 +33,6 @@ const HouseholdInfo = (props) => {
 
 HouseholdInfo.propTypes = {
   address: PropTypes.string,
-  back: PropTypes.func,
-  canPop: PropTypes.bool,
   city: PropTypes.string,
   numberOfBedrooms: PropTypes.number,
   state: PropTypes.string,
