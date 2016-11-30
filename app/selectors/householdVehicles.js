@@ -13,7 +13,7 @@ export default createSelector(
     const ownerId = vehicle.get('ownerId');
 
     const owner = householdMembers.find(member => member.get('id') === ownerId);
-    const ownerName = owner.get('first');
+    const ownerName = owner ? owner.get('first') : 'None';
     return vehicle.set('owner', ownerName);
   })
 );

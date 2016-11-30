@@ -4,6 +4,7 @@ import { RESET, SET_VEHICLE, UPDATE_PROPERTY } from 'constants/vehicle';
 
 const initialState = fromJS({
   id: Date.now(),
+  local: true,
 });
 export default (state = initialState, action) => {
   switch (action.type) {

@@ -43,8 +43,8 @@ export const submitApplication = () => async (dispatch, getState) => {
     const state = getState();
 
     const application = state.application.get('data').toJS();
-    const members = state.members.valueSeq().toJS();
-    const vehicles = state.vehicles.valueSeq().toJS();
+    const members = state.members.toJS().filter(member => !(member.removed && member.local));
+    const vehicles = state.vehicles.toJS().filter(vehicle => !(vehicle.removed && vehicle.local));
 
     let result;
     if (application.id) {

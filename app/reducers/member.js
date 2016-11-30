@@ -4,6 +4,7 @@ import { RESET, SET_MEMBER, UPDATE_PROPERTY } from 'constants/member';
 
 const initialState = fromJS({
   id: Date.now(),
+  local: true,
 });
 export default (state = initialState, action) => {
   switch (action.type) {
