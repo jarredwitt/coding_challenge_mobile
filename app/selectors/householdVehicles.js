@@ -11,7 +11,8 @@ export default createSelector(
     }
 
     const ownerId = vehicle.get('ownerId');
-    const ownerName = householdMembers.get(ownerId).get('first');
+    const owner = householdMembers.find(member => member.get('id') === ownerId);
+    const ownerName = owner.get('first');
     return vehicle.set('owner', ownerName);
   })
 );
