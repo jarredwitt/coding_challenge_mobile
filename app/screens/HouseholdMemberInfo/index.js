@@ -9,6 +9,7 @@ import HouseholdMemberInfo from './HouseholdMemberInfo';
 
 class HouseholdMemberInfoContainer extends Component {
   static propTypes = {
+    memberIndex: PropTypes.number,
     memberInfo: ImmutablePropTypes.map,
     navigator: PropTypes.object,
     resetMember: PropTypes.func,
@@ -30,7 +31,7 @@ class HouseholdMemberInfoContainer extends Component {
   }
   _back = () => this.props.navigator.pop();
   _setGender = gender => this.props.updateMemberProperty('gender', gender);
-  _submit = () => this.props.saveMember();
+  _submit = () => this.props.saveMember(this.props.memberIndex);
   render() {
     const { memberInfo, updateMemberProperty: updateProperty } = this.props;
     const { first, last, email, age, gender } = memberInfo.toJS();

@@ -22,7 +22,7 @@ export const getDraftApplicationData = async () => {
   const draftApplicationData = JSON.parse(draftApplicationDataJSON);
   return {
     application: fromJS(draftApplicationData.application),
-    members: transformKeysToNumbers(draftApplicationData.members),
+    members: fromJS(draftApplicationData.members),
     vehicles: transformKeysToNumbers(draftApplicationData.vehicles),
   };
 };

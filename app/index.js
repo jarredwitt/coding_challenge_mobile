@@ -21,7 +21,7 @@ class App extends Component {
     this._initialize();
   }
   _initialize = async () => {
-    const draftApplicationData = await getDraftApplicationData();
+    const draftApplicationData = await getDraftApplicationData() || {};
 
     this.store = initStore(draftApplicationData);
     this.navigationContext = new NavigationContext({

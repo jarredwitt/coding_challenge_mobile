@@ -13,7 +13,7 @@ import HouseholdSummary from './HouseholdSummary';
 class HouseholdSummaryContainer extends Component {
   static propTypes = {
     householdInfo: ImmutablePropTypes.map,
-    householdMembers: ImmutablePropTypes.map,
+    householdMembers: ImmutablePropTypes.list,
     householdVehicles: ImmutablePropTypes.map,
     navigator: PropTypes.object,
     saveApplicationAsDraft: PropTypes.func,
@@ -25,7 +25,7 @@ class HouseholdSummaryContainer extends Component {
   _submit = () => this.props.submitApplication();
   render() {
     const { householdInfo, householdMembers, householdVehicles } = this.props;
-    const householdMembersList = householdMembers.valueSeq().toJS();
+    const householdMembersList = householdMembers.toJS();
     const householdVehiclesList = householdVehicles.valueSeq().toJS();
 
     return (

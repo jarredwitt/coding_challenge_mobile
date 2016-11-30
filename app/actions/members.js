@@ -1,11 +1,17 @@
-import { ADD_OR_UPDATE_MEMBER, REMOVE_MEMBER } from 'constants/members';
+import { ADD_MEMBER, REMOVE_MEMBER, UPDATE_MEMBER } from 'constants/members';
 
-export const addOrUpdateMember = member => ({
-  type: ADD_OR_UPDATE_MEMBER,
+export const addMember = member => ({
+  type: ADD_MEMBER,
   member,
 });
 
-export const removeMember = id => ({
+export const removeMember = index => ({
   type: REMOVE_MEMBER,
-  id,
+  index,
+});
+
+export const updateMember = (index, member) => ({
+  type: UPDATE_MEMBER,
+  index,
+  member,
 });

@@ -24,7 +24,7 @@ const HouseholdInfo = (props) => {
         <StyledText style={[styles.titleBase, styles.title]}>Household Members.</StyledText>
         <StyledText style={[styles.titleBase, styles.subtitle]}>These are the people you live with.</StyledText>
         <View style={styles.membersContainer}>
-          {householdMembers.map(member => <HouseholdMemberCard key={member.id} {...member} editPress={editMember} removePress={removeMember} />)}
+          {householdMembers.map((member, index) => <HouseholdMemberCard key={member.id} memberIndex={index} {...member} editPress={editMember} removePress={removeMember} />)}
         </View>
         <Button label="Next" onPress={next} />
       </ScrollView>

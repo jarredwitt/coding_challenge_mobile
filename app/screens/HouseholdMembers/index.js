@@ -11,7 +11,7 @@ import HouseholdMembers from './HouseholdMembers';
 
 class HouseholdMembersContainer extends Component {
   static propTypes = {
-    householdMembers: ImmutablePropTypes.map,
+    householdMembers: ImmutablePropTypes.list,
     navigator: PropTypes.object,
     removeMember: PropTypes.func,
     setMember: PropTypes.func,
@@ -19,18 +19,18 @@ class HouseholdMembersContainer extends Component {
 
   _addMember = () => this.props.navigator.push(Router.getRoute('householdMemberInfoScreen'));
   _back = () => this.props.navigator.pop();
-  _editMember = (id) => {
-    const member = this.props.householdMembers.get(id);
+  _editMember = (index) => {
+    const member = this.props.householdMembers.get(index);
     this.props.setMember(member);
-    this.props.navigator.push(Router.getRoute('householdMemberInfoScreen'));
+    this.props.navigator.push(Router.getRoute('householdMemberInfoScreen', { memberIndex: index }));
   }
   _next = () => this.props.navigator.push(Router.getRoute('householdVehiclesScreen'));
-  _removeMember = (id) => {
-    this.props.removeMember(id);
+  _removeMember = (index) => {
+    this.props.removeMember(index);
   }
   render() {
     const { householdMembers } = this.props;
-    const householdMembersList = householdMembers.valueSeq().toJS();
+    const householdMembersList = householdMembers.toJS();
 
     return (
       <HouseholdMembers
