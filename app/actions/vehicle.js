@@ -2,17 +2,19 @@ import { NavigationActions } from '@exponent/ex-navigation';
 import { batchActions } from 'redux-batched-actions';
 import { RESET, SET_VEHICLE, UPDATE_PROPERTY } from 'constants/vehicle';
 
-import { addOrUpdateVehicle } from './vehicles';
+import { addVehicle, updateVehicle } from './vehicles';
 
 export const resetVehicle = () => ({
   type: RESET,
 });
 
-export const saveVehicle = () => (dispatch, getState) => {
+export const saveVehicle = index => (dispatch, getState) => {
   const vehicle = getState().vehicle;
 
+  const baseAction = index !== undefined ? updateVehicle(index, vehicle) : addVehicle(vehicle);
+
   dispatch(batchActions([
-    addOrUpdateVehicle(vehicle),
+    baseAction,
     NavigationActions.pop('root'),
   ]));
 };

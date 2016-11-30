@@ -24,7 +24,7 @@ const HouseholdVehicles = (props) => {
         <StyledText style={[styles.titleBase, styles.title]}>Household Vehicles.</StyledText>
         <StyledText style={[styles.titleBase, styles.subtitle]}>These are the vehicles you own.</StyledText>
         <View>
-          {householdVehicles.map(vehicle => <HouseholdVehicleCard key={vehicle.id} {...vehicle} editPress={editVehicle} removePress={removeVehicle} />)}
+          {householdVehicles.map((vehicle, index) => <HouseholdVehicleCard key={vehicle.id} vehicleIndex={index} {...vehicle} editPress={editVehicle} removePress={removeVehicle} />)}
         </View>
         <Button label="Next" onPress={next} />
       </ScrollView>

@@ -11,7 +11,7 @@ import HouseholdVehicles from './HouseholdVehicles';
 
 class HouseholdVehiclesContainer extends Component {
   static propTypes = {
-    householdVehicles: ImmutablePropTypes.map,
+    householdVehicles: ImmutablePropTypes.list,
     navigator: PropTypes.object,
     removeVehicle: PropTypes.func,
     setVehicle: PropTypes.func,
@@ -19,18 +19,18 @@ class HouseholdVehiclesContainer extends Component {
 
   _addVehicle = () => this.props.navigator.push(Router.getRoute('householdVehicleInfoScreen'));
   _back = () => this.props.navigator.pop();
-  _editVehicle = (id) => {
-    const vehicle = this.props.householdVehicles.get(id);
+  _editVehicle = (index) => {
+    const vehicle = this.props.householdVehicles.get(index);
     this.props.setVehicle(vehicle);
-    this.props.navigator.push(Router.getRoute('householdVehicleInfoScreen'));
+    this.props.navigator.push(Router.getRoute('householdVehicleInfoScreen', { vehicleIndex: index }));
   }
   _next = () => this.props.navigator.push(Router.getRoute('householdSummaryScreen'));
-  _removeVehicle = (id) => {
-    this.props.removeVehicle(id);
+  _removeVehicle = (index) => {
+    this.props.removeVehicle(index);
   }
   render() {
     const { householdVehicles } = this.props;
-    const householdVehiclesList = householdVehicles.valueSeq().toJS();
+    const householdVehiclesList = householdVehicles.toJS();
 
     return (
       <HouseholdVehicles

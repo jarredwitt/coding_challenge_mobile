@@ -1,11 +1,17 @@
-import { ADD_OR_UPDATE_VEHICLE, REMOVE_VEHICLE } from 'constants/vehicles';
+import { ADD_VEHICLE, REMOVE_VEHICLE, UPDATE_VEHICLE } from 'constants/vehicles';
 
-export const addOrUpdateVehicle = vehicle => ({
-  type: ADD_OR_UPDATE_VEHICLE,
+export const addVehicle = vehicle => ({
+  type: ADD_VEHICLE,
   vehicle,
 });
 
-export const removeVehicle = id => ({
+export const removeVehicle = index => ({
   type: REMOVE_VEHICLE,
-  id,
+  index,
+});
+
+export const updateVehicle = (index, vehicle) => ({
+  type: UPDATE_VEHICLE,
+  index,
+  vehicle,
 });

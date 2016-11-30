@@ -12,17 +12,17 @@ class HouseholdVehicleCard extends Component {
   static propTypes = {
     editPress: PropTypes.func,
     hideButtons: PropTypes.bool,
-    id: PropTypes.number,
     licensePlate: PropTypes.string,
     make: PropTypes.string,
     model: PropTypes.string,
     owner: PropTypes.string,
     removePress: PropTypes.func,
+    vehicleIndex: PropTypes.number,
     year: PropTypes.string,
   }
 
-  _onEditPress = () => this.props.editPress(this.props.id);
-  _onRemovePress = () => this.props.removePress(this.props.id);
+  _onEditPress = () => this.props.editPress(this.props.vehicleIndex);
+  _onRemovePress = () => this.props.removePress(this.props.vehicleIndex);
   render() {
     const { make, model, owner, year, licensePlate, hideButtons } = this.props;
 

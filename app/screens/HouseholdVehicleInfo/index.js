@@ -10,11 +10,12 @@ import HouseholdVehicleInfo from './HouseholdVehicleInfo';
 
 class HouseholdVehicleInfoContainer extends Component {
   static propTypes = {
-    householdMembers: ImmutablePropTypes.map,
+    householdMembers: ImmutablePropTypes.list,
     navigator: PropTypes.object,
     resetVehicle: PropTypes.func,
     saveVehicle: PropTypes.func,
     updateVehicleProperty: PropTypes.func,
+    vehicleIndex: PropTypes.number,
     vehicleInfo: ImmutablePropTypes.map,
   }
 
@@ -24,7 +25,7 @@ class HouseholdVehicleInfoContainer extends Component {
     },
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     return nextProps.vehicleInfo !== this.props.vehicleInfo;
   }
   componentWillUnmount() {
@@ -32,11 +33,11 @@ class HouseholdVehicleInfoContainer extends Component {
   }
   _back = () => this.props.navigator.pop();
   _setVehicleOwner = id => this.props.updateVehicleProperty('ownerId', id);
-  _submit = () => this.props.saveVehicle();
+  _submit = () => this.props.saveVehicle(this.props.vehicleIndex);
   render() {
     const { householdMembers, updateVehicleProperty: updateProperty, vehicleInfo } = this.props;
     const { licensePlate, make, model, ownerId, year } = vehicleInfo.toJS();
-    const householdMembersList = householdMembers.valueSeq().toJS().map(member => ({ display: member.first, value: member.id }));
+    const householdMembersList = householdMembers.toJS().map(member => ({ display: member.first, value: member.id }));
 
     return (
       <HouseholdVehicleInfo
