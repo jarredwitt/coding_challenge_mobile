@@ -10,7 +10,7 @@ import StyledText from 'components/StyledText';
 
 class HouseholdMemberCard extends Component {
   static propTypes = {
-    age: PropTypes.string,
+    age: PropTypes.number,
     editPress: PropTypes.func,
     email: PropTypes.string,
     first: PropTypes.string,

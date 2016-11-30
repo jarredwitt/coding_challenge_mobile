@@ -37,7 +37,7 @@ const HouseholdMemberInfo = (props) => {
           <FormInput name="first" label="First" value={first} onChangeText={updateProperty} autoCorrect={false} />
           <FormInput name="last" label="Last" value={last} onChangeText={updateProperty} autoCorrect={false} />
           <FormInput name="email" label="Email" value={email} onChangeText={updateProperty} keyboardType="email-address" autoCapitalize="none" autoCorrect={false} />
-          <FormInput name="age" label="Age" value={age} onChangeText={updateProperty} keyboardType="number-pad" />
+          <FormInput name="age" label="Age" value={age} valueType="number" onChangeText={updateProperty} keyboardType="number-pad" />
         </View>
         <Button label="Save" onPress={submit} hideIcon />
       </KeyboardAwareScrollView>
@@ -46,7 +46,7 @@ const HouseholdMemberInfo = (props) => {
 };
 
 HouseholdMemberInfo.propTypes = {
-  age: PropTypes.string,
+  age: PropTypes.number,
   back: PropTypes.func,
   email: PropTypes.string,
   first: PropTypes.string,

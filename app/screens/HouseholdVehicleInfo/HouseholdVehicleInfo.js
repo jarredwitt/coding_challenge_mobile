@@ -27,7 +27,7 @@ const HouseholdMemberInfo = (props) => {
           <RadioButtons options={householdMembers} value={ownerId} onPress={setVehicleOwner} />
           <FormInput name="make" label="Make" value={make} onChangeText={updateProperty} />
           <FormInput name="model" label="Model" value={model} onChangeText={updateProperty} autoCorrect={false} />
-          <FormInput name="year" label="Year" value={year} onChangeText={updateProperty} keyboardType="number-pad" />
+          <FormInput name="year" label="Year" value={year} valueType="number" onChangeText={updateProperty} keyboardType="number-pad" />
           <FormInput name="licensePlate" label="License plate" value={licensePlate} onChangeText={updateProperty} autoCorrect={false} autoCapitalize="characters" />
         </View>
         <Button label="Save" hideIcon onPress={submit} />
@@ -46,7 +46,7 @@ HouseholdMemberInfo.propTypes = {
   setVehicleOwner: PropTypes.func,
   submit: PropTypes.func,
   updateProperty: PropTypes.func,
-  year: PropTypes.string,
+  year: PropTypes.number,
 };
 
 const styles = StyleSheet.create({

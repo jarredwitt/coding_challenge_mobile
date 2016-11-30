@@ -18,7 +18,7 @@ class HouseholdVehicleCard extends Component {
     owner: PropTypes.string,
     removePress: PropTypes.func,
     vehicleIndex: PropTypes.number,
-    year: PropTypes.string,
+    year: PropTypes.number,
   }
 
   _onEditPress = () => this.props.editPress(this.props.vehicleIndex);

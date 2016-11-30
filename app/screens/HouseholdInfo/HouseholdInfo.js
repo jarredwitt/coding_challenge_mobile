@@ -25,7 +25,7 @@ const HouseholdInfo = (props) => {
           <FormInput name="city" label="City" value={city} onChangeText={updateProperty} />
           <FormInput name="state" label="State" value={state} onChangeText={updateProperty} maxLength={2} autoCorrect={false} autoCapitalize="characters" />
           <FormInput name="zip" label="Zip" value={zip} onChangeText={updateProperty} keyboardType="number-pad" />
-          <FormInput name="numberOfBedrooms" label="Number of bedrooms" value={numberOfBedrooms} onChangeText={updateProperty} keyboardType="number-pad" />
+          <FormInput name="numberOfBedrooms" label="Number of bedrooms" value={numberOfBedrooms} valueType="number" onChangeText={updateProperty} keyboardType="number-pad" />
         </View>
         <Button label="Next" onPress={submit} />
       </KeyboardAwareScrollView>
@@ -38,7 +38,7 @@ HouseholdInfo.propTypes = {
   back: PropTypes.func,
   canPop: PropTypes.bool,
   city: PropTypes.string,
-  numberOfBedrooms: PropTypes.string,
+  numberOfBedrooms: PropTypes.number,
   state: PropTypes.string,
   submit: PropTypes.func,
   updateProperty: PropTypes.func,

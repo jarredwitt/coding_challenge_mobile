@@ -16,19 +16,33 @@ class FormInput extends Component {
     labelStyle: StyledText.propTypes.style,
     name: PropTypes.string,
     onChangeText: PropTypes.func,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    valueType: PropTypes.oneOf(['string', 'number']),
   }
 
   static defaultProps = {
     onChangeText: () => true,
+    valueType: 'string',
   }
 
   shouldComponentUpdate(nextProps) {
     return nextProps.value !== this.props.value;
   }
-  _onChangeText = text => this.props.onChangeText(this.props.name, text);
+  _onChangeText = (text) => {
+    if (this.props.valueType === 'number') {
+      this.props.onChangeText(this.props.name, text * 1);
+    } else {
+      this.props.onChangeText(this.props.name, text);
+    }
+  };
   render() {
-    const { inputStyle, label, labelHidden, labelStyle, onChangeText, ...inputProps } = this.props; // eslint-disable-line
+    let { inputStyle, label, labelHidden, labelStyle, onChangeText, value, valueType, ...inputProps } = this.props; // eslint-disable-line
+    if (value && valueType === 'number') {
+      value = value.toString();
+    }
 
     return (
       <View style={styles.container}>
@@ -38,7 +52,7 @@ class FormInput extends Component {
           </StyledText>
         }
         <View style={styles.wrapper}>
-          <TextInput style={[styles.input, inputStyle]} onChangeText={this._onChangeText} {...inputProps} />
+          <TextInput style={[styles.input, inputStyle]} onChangeText={this._onChangeText} value={value} {...inputProps} />
         </View>
       </View>
     );

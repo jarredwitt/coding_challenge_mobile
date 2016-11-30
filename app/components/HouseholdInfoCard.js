@@ -13,7 +13,7 @@ class HouseholdInfoCard extends Component {
     city: PropTypes.string,
     state: PropTypes.string,
     zip: PropTypes.string,
-    numberOfBedrooms: PropTypes.string,
+    numberOfBedrooms: PropTypes.number,
   }
 
   render() {
