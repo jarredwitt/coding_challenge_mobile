@@ -16,13 +16,14 @@ class HouseholdMemberCard extends Component {
     first: PropTypes.string,
     gender: PropTypes.string,
     hideButtons: PropTypes.bool,
+    id: PropTypes.number,
     last: PropTypes.string,
     memberIndex: PropTypes.number,
     removePress: PropTypes.func,
   }
 
   _onEditPress = () => this.props.editPress(this.props.memberIndex);
-  _onRemovePress = () => this.props.removePress(this.props.memberIndex);
+  _onRemovePress = () => this.props.removePress(this.props.id);
   render() {
     const { first, last, gender, age, email, hideButtons } = this.props;
 

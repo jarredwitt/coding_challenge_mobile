@@ -5,9 +5,9 @@ export const addVehicle = vehicle => ({
   vehicle,
 });
 
-export const removeVehicle = index => ({
+export const removeVehicle = id => ({
   type: REMOVE_VEHICLE,
-  index,
+  id,
 });
 
 export const setVehicles = vehicles => ({

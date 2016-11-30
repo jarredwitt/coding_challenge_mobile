@@ -5,9 +5,9 @@ export const addMember = member => ({
   member,
 });
 
-export const removeMember = index => ({
+export const removeMember = id => ({
   type: REMOVE_MEMBER,
-  index,
+  id,
 });
 
 export const setMembers = members => ({

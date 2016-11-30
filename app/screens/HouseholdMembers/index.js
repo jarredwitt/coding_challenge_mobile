@@ -25,9 +25,7 @@ class HouseholdMembersContainer extends Component {
     this.props.navigator.push(Router.getRoute('householdMemberInfoScreen', { memberIndex: index }));
   }
   _next = () => this.props.navigator.push(Router.getRoute('householdVehiclesScreen'));
-  _removeMember = (index) => {
-    this.props.removeMember(index);
-  }
+  _removeMember = id => this.props.removeMember(id);
   render() {
     const { householdMembers } = this.props;
     const householdMembersList = householdMembers.toJS();

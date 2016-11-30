@@ -7,8 +7,10 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_VEHICLE:
       return state.push(action.vehicle);
-    case REMOVE_VEHICLE:
-      return state.update(action.index, vehicle => vehicle.set('removed', true));
+    case REMOVE_VEHICLE: {
+      const index = state.findIndex(vehicle => vehicle.get('id') === action.id);
+      return state.update(index, vehicle => vehicle.set('removed', true));
+    }
     case SET_VEHICLES:
       return fromJS(action.vehicles);
     case UPDATE_VEHICLE:

@@ -7,8 +7,10 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_MEMBER:
       return state.push(action.member);
-    case REMOVE_MEMBER:
-      return state.update(action.index, member => member.set('removed', true));
+    case REMOVE_MEMBER: {
+      const index = state.findIndex(member => member.get('id') === action.id);
+      return state.update(index, member => member.set('removed', true));
+    }
     case SET_MEMBERS:
       return fromJS(action.members);
     case UPDATE_MEMBER:
