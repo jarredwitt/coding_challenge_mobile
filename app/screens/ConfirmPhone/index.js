@@ -22,7 +22,15 @@ class ConfirmPhoneContainer extends Component {
     return nextProps.confirmationCode !== this.props.confirmationCode;
   }
   _back = () => this.props.navigator.pop();
-  _submit = () => this.props.confirmPhoneNumber();
+  _submit = () => this._validate() && this.props.confirmPhoneNumber();
+  _validate = () => {
+    if (!this.props.confirmationCode) {
+      Alert.alert('Error!', 'Confirmation code must be filled out.');
+      return false;
+    }
+
+    return true;
+  }
   render() {
     const { confirmationCode, updateApplicationProperty: updateProperty } = this.props;
 

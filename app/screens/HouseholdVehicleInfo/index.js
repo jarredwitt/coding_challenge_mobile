@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationStyles } from '@exponent/ex-navigation';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -33,7 +34,19 @@ class HouseholdVehicleInfoContainer extends Component {
   }
   _back = () => this.props.navigator.pop();
   _setVehicleOwner = id => this.props.updateVehicleProperty('ownerId', id);
-  _submit = () => this.props.saveVehicle(this.props.vehicleIndex);
+  _submit = () => this._validate() && this.props.saveVehicle(this.props.vehicleIndex);
+  _validate = () => {
+    const fields = ['licensePlate', 'make', 'model', 'ownerId', 'year'];
+    const vehicleInfo = this.props.vehicleInfo.toJS();
+    const valid = fields.every(field => vehicleInfo[field]);
+
+    if (!valid) {
+      Alert.alert('Error!', 'Please make sure all fields are valid.');
+      return false;
+    }
+
+    return valid;
+  }
   render() {
     const { householdMembers, updateVehicleProperty: updateProperty, vehicleInfo } = this.props;
     const { licensePlate, make, model, ownerId, year } = vehicleInfo.toJS();

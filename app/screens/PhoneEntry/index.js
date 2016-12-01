@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import { updateApplicationProperty } from 'actions/application';
@@ -16,7 +17,15 @@ class PhoneEntryContainer extends Component {
   shouldComponentUpdate(nextProps) {
     return nextProps.phoneNumber !== this.props.phoneNumber;
   }
-  _submit = () => this.props.validatePhoneNumber();
+  _submit = () => this._validate() && this.props.validatePhoneNumber();
+  _validate = () => {
+    if (!this.props.phoneNumber) {
+      Alert.alert('Error!', 'Phone number must be filled out.');
+      return false;
+    }
+
+    return true;
+  }
   render() {
     const { phoneNumber, updateApplicationProperty: updateProperty } = this.props;
     return (

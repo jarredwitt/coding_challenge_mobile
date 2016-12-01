@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -24,8 +25,16 @@ class HouseholdMembersContainer extends Component {
     this.props.setMember(member);
     this.props.navigator.push(Router.getRoute('householdMemberInfoScreen', { memberIndex: index }));
   }
-  _next = () => this.props.navigator.push(Router.getRoute('householdVehiclesScreen'));
+  _next = () => this._validate() && this.props.navigator.push(Router.getRoute('householdVehiclesScreen'));
   _removeMember = id => this.props.removeMember(id);
+  _validate = () => {
+    if (this.props.householdMembers.size === 0) {
+      Alert.alert('Error!', 'Your household needs at least one member.');
+      return false;
+    }
+
+    return true;
+  }
   render() {
     const { householdMembers } = this.props;
     const householdMembersList = householdMembers.toJS();

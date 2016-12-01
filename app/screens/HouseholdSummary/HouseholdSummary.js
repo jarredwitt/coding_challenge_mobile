@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import {
   ScrollView,
   StyleSheet,
+  View,
 } from 'react-native';
 
 import Button from 'components/Button';
@@ -26,8 +27,12 @@ const HouseholdInfo = (props) => {
         <HouseholdInfoCard {...householdInfo} />
         <StyledText style={[styles.titleBase, styles.subtitle]}>Household Members.</StyledText>
         {householdMembers.map(member => <HouseholdMemberCard key={member.id} {...member} hideButtons />)}
-        <StyledText style={[styles.titleBase, styles.subtitle]}>Household Vehicles.</StyledText>
-        {householdVehicles.map(vehicle => <HouseholdVehicleCard key={vehicle.id} {...vehicle} hideButtons />)}
+        {householdVehicles.length > 0 &&
+          <View>
+            <StyledText style={[styles.titleBase, styles.subtitle]}>Household Vehicles.</StyledText>
+            {householdVehicles.map(vehicle => <HouseholdVehicleCard key={vehicle.id} {...vehicle} hideButtons />)}
+          </View>
+        }
         <Button label="Submit" onPress={submit} />
         <LinkButton label="Save as draft" onPress={save} />
       </ScrollView>

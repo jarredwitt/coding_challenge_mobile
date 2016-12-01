@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationStyles } from '@exponent/ex-navigation';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -31,7 +32,19 @@ class HouseholdMemberInfoContainer extends Component {
   }
   _back = () => this.props.navigator.pop();
   _setGender = gender => this.props.updateMemberProperty('gender', gender);
-  _submit = () => this.props.saveMember(this.props.memberIndex);
+  _submit = () => this._validate() && this.props.saveMember(this.props.memberIndex);
+  _validate = () => {
+    const fields = ['first', 'last', 'email', 'age', 'gender'];
+    const memberInfo = this.props.memberInfo.toJS();
+    const valid = fields.every(field => memberInfo[field]);
+
+    if (!valid) {
+      Alert.alert('Error!', 'Please make sure all fields are valid.');
+      return false;
+    }
+
+    return valid;
+  }
   render() {
     const { memberInfo, updateMemberProperty: updateProperty } = this.props;
     const { first, last, email, age, gender } = memberInfo.toJS();

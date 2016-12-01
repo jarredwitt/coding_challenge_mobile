@@ -22,15 +22,11 @@ export const confirmPhoneNumber = () => async (dispatch, getState) => {
     const phoneNumber = state.application.get('data').get('phoneNumber');
     const confirmationCode = state.application.get('data').get('confirmationCode');
 
-    if (!confirmationCode) {
-      throw new Error('Confirmation code must be filled out.');
-    }
-
     const result = await PhoneNumber.confirm(phoneNumber, confirmationCode);
 
     const applicationData = result.data.application || {};
-    const members = result.data.members || {};
-    const vehicles = result.data.vehicles || {};
+    const members = result.data.members || [];
+    const vehicles = result.data.vehicles || [];
 
     dispatch(batchActions([
       setApplicationLoading(false),
@@ -52,9 +48,6 @@ export const validatePhoneNumber = () => async (dispatch, getState) => {
     const state = getState();
 
     const phoneNumber = state.application.get('data').get('phoneNumber');
-    if (!phoneNumber) {
-      throw new Error('Phone number must be filled out.');
-    }
 
     await PhoneNumber.validate(phoneNumber);
     dispatch(batchActions([

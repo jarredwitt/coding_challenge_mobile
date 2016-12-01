@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Keyboard } from 'react-native';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -19,9 +19,18 @@ class HouseholdInfoContainer extends Component {
   shouldComponentUpdate(nextProps) {
     return nextProps.householdInfo !== this.props.householdInfo;
   }
-  _submit = () => {
-    Keyboard.dismiss();
-    this.props.navigator.push(Router.getRoute('householdMembersScreen'));
+  _submit = () => this._validate() && this.props.navigator.push(Router.getRoute('householdMembersScreen'));
+  _validate = () => {
+    const fields = ['address', 'city', 'state', 'zip', 'numberOfBedrooms'];
+    const householdInfo = this.props.householdInfo.toJS();
+    const valid = fields.every(field => householdInfo[field]);
+
+    if (!valid) {
+      Alert.alert('Error!', 'Please make sure all fields are valid.');
+      return false;
+    }
+
+    return valid;
   }
   render() {
     const { householdInfo, updateApplicationProperty: updateProperty } = this.props;
